@@ -33,24 +33,16 @@ import java.io.*;
 
 public
 class KnownHosts implements HostKeyRepository{
-  private static final String _known_hosts="known_hosts";
-
-  /*
-  static final int SSHDSS=0;
-  static final int SSHRSA=1;
-  static final int UNKNOWN=2;
-  */
-
   private JSch jsch=null;
   private String known_hosts=null;
-  private java.util.Vector pool=null;
+  private java.util.Vector<HostKey> pool=null;
 
   private MAC hmacsha1=null;
 
   KnownHosts(JSch jsch){
     super();
     this.jsch=jsch;
-    pool=new java.util.Vector();
+    pool=new java.util.Vector<HostKey>();
   }
 
   void setKnownHosts(String foo) throws JSchException{
@@ -190,7 +182,7 @@ loop:
 
     synchronized(pool){
     for(int i=0; i<pool.size(); i++){
-      hk=(HostKey)(pool.elementAt(i));
+      hk=(pool.elementAt(i));
       if(hk.isMatched(host) && hk.type==type){
         if(Util.array_equals(hk.key, key)){
 	  //System.err.println("find!!");
@@ -208,12 +200,10 @@ loop:
   public void add(HostKey hostkey, UserInfo userinfo){
     int type=hostkey.type;
     String host=hostkey.getHost();
-    byte[] key=hostkey.key;
-
     HostKey hk=null;
     synchronized(pool){
       for(int i=0; i<pool.size(); i++){
-        hk=(HostKey)(pool.elementAt(i));
+        hk=(pool.elementAt(i));
         if(hk.isMatched(host) && hk.type==type){
 /*
 	  if(Util.array_equals(hk.key, key)){ return; }
@@ -278,7 +268,7 @@ loop:
     synchronized(pool){
       int count=0;
       for(int i=0; i<pool.size(); i++){
-	HostKey hk=(HostKey)pool.elementAt(i);
+	HostKey hk=pool.elementAt(i);
 	if(hk.type==HostKey.UNKNOWN) continue;
 	if(host==null || 
 	   (hk.isMatched(host) && 
@@ -290,7 +280,7 @@ loop:
       HostKey[] foo=new HostKey[count];
       int j=0;
       for(int i=0; i<pool.size(); i++){
-	HostKey hk=(HostKey)pool.elementAt(i);
+	HostKey hk=pool.elementAt(i);
 	if(hk.type==HostKey.UNKNOWN) continue;
 	if(host==null || 
 	   (hk.isMatched(host) && 
@@ -308,7 +298,7 @@ loop:
     boolean sync=false;
     synchronized(pool){
     for(int i=0; i<pool.size(); i++){
-      HostKey hk=(HostKey)(pool.elementAt(i));
+      HostKey hk=(pool.elementAt(i));
       if(host==null ||
 	 (hk.isMatched(host) && 
 	  (type==null || (hk.getType().equals(type) &&
@@ -349,7 +339,7 @@ loop:
       HostKey hk;
       synchronized(pool){
       for(int i=0; i<pool.size(); i++){
-        hk=(HostKey)(pool.elementAt(i));
+        hk=(pool.elementAt(i));
         //hk.dump(out);
 	String host=hk.getHost();
 	String type=hk.getType();
@@ -399,7 +389,7 @@ loop:
   private synchronized MAC getHMACSHA1(){
     if(hmacsha1==null){
       try{
-        Class c=Class.forName(jsch.getConfig("hmac-sha1"));
+    	  Class<?> c=Class.forName(jsch.getConfig("hmac-sha1"));
         hmacsha1=(MAC)(c.newInstance());
       }
       catch(Exception e){ 

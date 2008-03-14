@@ -28,7 +28,7 @@ public class JSchSession{
   private static JSch jsch=null;
   private static SessionFactory sessionFactory=null;
 
-  private static java.util.Hashtable pool=new java.util.Hashtable();
+  private static java.util.Hashtable<String, JSchSession> pool=new java.util.Hashtable<String, JSchSession>();
 
   private String key=null;
   private Session session=null;
@@ -38,7 +38,7 @@ public class JSchSession{
       throws JSchException{
     String key=getPoolKey(username, hostname, port);
     try{
-      JSchSession jschSession=(JSchSession)pool.get(key);
+      JSchSession jschSession=pool.get(key);
       if(jschSession!=null&&!jschSession.getSession().isConnected()){
         pool.remove(key);
         jschSession=null;

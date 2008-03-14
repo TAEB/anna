@@ -78,7 +78,7 @@ class UserAuthKeyboardInteractive extends UserAuth{
 	if(command==SSH_MSG_USERAUTH_BANNER){
 	  buf.getInt(); buf.getByte(); buf.getByte();
 	  byte[] _message=buf.getString();
-	  byte[] lang=buf.getString();
+	  buf.getString();
 	  String message=null;
 	  try{ message=new String(_message, "UTF-8"); }
 	  catch(java.io.UnsupportedEncodingException e){
@@ -112,7 +112,7 @@ class UserAuthKeyboardInteractive extends UserAuth{
 	  buf.getInt(); buf.getByte(); buf.getByte();
 	  String name=new String(buf.getString());
 	  String instruction=new String(buf.getString());
-	  String languate_tag=new String(buf.getString());
+	  new String(buf.getString());
 	  int num=buf.getInt();
 	  String[] prompt=new String[num];
 	  boolean[] echo=new boolean[num];

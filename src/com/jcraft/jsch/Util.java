@@ -102,7 +102,7 @@ class Util{
     if(foo==null)
       return null;
     byte[] buf=foo.getBytes();
-    java.util.Vector bar=new java.util.Vector();
+    java.util.Vector<String> bar=new java.util.Vector<String>();
     int start=0;
     int index;
     while(true){
@@ -117,7 +117,7 @@ class Util{
     }
     String[] result=new String[bar.size()];
     for(int i=0; i<result.length; i++){
-      result[i]=(String)(bar.elementAt(i));
+      result[i]=(bar.elementAt(i));
     }
     return result;
   }

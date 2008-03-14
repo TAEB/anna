@@ -286,7 +286,7 @@ public abstract class KeyPair{
   private Random genRandom(){
     if(random==null){
       try{
-	Class c=Class.forName(jsch.getConfig("random"));
+    	  Class<?> c=Class.forName(jsch.getConfig("random"));
         random=(Random)(c.newInstance());
       }
       catch(Exception e){ System.err.println("connect: random "+e); }
@@ -296,7 +296,7 @@ public abstract class KeyPair{
 
   private HASH genHash(){
     try{
-      Class c=Class.forName(jsch.getConfig("md5"));
+    	Class<?> c=Class.forName(jsch.getConfig("md5"));
       hash=(HASH)(c.newInstance());
       hash.init();
     }
@@ -306,7 +306,7 @@ public abstract class KeyPair{
   }
   private Cipher genCipher(){
     try{
-      Class c;
+    	Class<?> c;
       c=Class.forName(jsch.getConfig("3des-cbc"));
       cipher=(Cipher)(c.newInstance());
     }
@@ -516,7 +516,7 @@ public abstract class KeyPair{
 	Buffer _buf=new Buffer(data);
 	_buf.getInt();  // 0x3f6ff9be
 	_buf.getInt();
-	byte[]_type=_buf.getString();
+	_buf.getString();
 	//System.err.println("type: "+new String(_type)); 
 	byte[] _cipher=_buf.getString();
 	String cipher=new String(_cipher);

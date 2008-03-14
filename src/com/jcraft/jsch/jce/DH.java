@@ -58,7 +58,7 @@ public class DH implements com.jcraft.jsch.DH{
       KeyPair myKpair=myKpairGen.generateKeyPair();
       myKeyAgree.init(myKpair.getPrivate());
 //    BigInteger x=((javax.crypto.interfaces.DHPrivateKey)(myKpair.getPrivate())).getX();
-      byte[] myPubKeyEnc=myKpair.getPublic().getEncoded();
+      myKpair.getPublic().getEncoded();
       e=((javax.crypto.interfaces.DHPublicKey)(myKpair.getPublic())).getY();
       e_array=e.toByteArray();
     }

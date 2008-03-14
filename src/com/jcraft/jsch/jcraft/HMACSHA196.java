@@ -29,8 +29,6 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.jcraft.jsch.jcraft;
 
-import com.jcraft.jsch.MAC;
-
 public class HMACSHA196 extends HMACSHA1{
 
   private static final String name="hmac-sha1-96";

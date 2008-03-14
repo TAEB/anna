@@ -35,7 +35,11 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 package com.jcraft.jzlib;
 
 public class ZStreamException extends java.io.IOException {
-  public ZStreamException() {
+  /**
+	 * 
+	 */
+	private static final long serialVersionUID = -4733110211408919347L;
+public ZStreamException() {
     super();
   }
   public ZStreamException(String s) {

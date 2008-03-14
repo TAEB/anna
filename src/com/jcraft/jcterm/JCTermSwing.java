@@ -30,7 +30,11 @@ import java.awt.image.*;
 
 public class JCTermSwing extends JPanel implements KeyListener, /*Runnable,*/
     Term{
-  OutputStream out;
+  /**
+	 * 
+	 */
+	private static final long serialVersionUID = -6672846084361207634L;
+OutputStream out;
   InputStream in;
   Emulator emulator=null;
 
@@ -64,8 +68,6 @@ public class JCTermSwing extends JPanel implements KeyListener, /*Runnable,*/
 
   //private int line_space=0;
   private int line_space=-2;
-  private int compression=0;
-
   private boolean antialiasing=true;
 
   private Splash splash=null;
@@ -442,7 +444,6 @@ public class JCTermSwing extends JPanel implements KeyListener, /*Runnable,*/
   public void setCompression(int compression){
     if(compression<0||9<compression)
       return;
-    this.compression=compression;
   }
 
   private java.awt.Color toColor(Object o){

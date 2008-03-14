@@ -25,13 +25,15 @@ package com.jcraft.jcterm;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
-import java.awt.font.*;
-import java.awt.geom.*;
-import java.awt.image.*;
 
 public class JCTermAWT  extends Panel implements KeyListener,  /*Runnable,*/ Term{
 
-  static String COPYRIGHT=
+  /**
+	 * 
+	 */
+	private static final long serialVersionUID = -2562383781823411514L;
+
+static String COPYRIGHT=
 "JCTerm 0.0.9\nCopyright (C) 2002,2007 ymnk<ymnk@jcraft.com>, JCraft,Inc.\n"+
 "Official Homepage: http://www.jcraft.com/jcterm/\n"+
 "This software is licensed under GNU LGPL.";
@@ -81,8 +83,7 @@ public class JCTermAWT  extends Panel implements KeyListener,  /*Runnable,*/ Ter
   private int proxy_socks5_port=0;
   */
 
-  private boolean antialiasing=true;
-//  private int line_space=0;
+  //  private int line_space=0;
   private int line_space=-2;
   private int compression=0;
 
@@ -154,8 +155,6 @@ public class JCTermAWT  extends Panel implements KeyListener,  /*Runnable,*/ Ter
   public void setFrame(java.awt.Component term_area){
     this.term_area=term_area;
   }
-
-  private Thread thread=null;
 
   public void start(Connection connection){
     this.connection=connection;

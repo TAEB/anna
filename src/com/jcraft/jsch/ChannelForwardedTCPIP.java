@@ -34,7 +34,7 @@ import java.io.*;
 
 public class ChannelForwardedTCPIP extends Channel{
 
-  static java.util.Vector pool=new java.util.Vector();
+  static java.util.Vector<Object[]> pool=new java.util.Vector<Object[]>();
 
   static private final int LOCAL_WINDOW_SIZE_MAX=0x20000;
 //static private final int LOCAL_WINDOW_SIZE_MAX=0x100000;
@@ -58,7 +58,8 @@ public class ChannelForwardedTCPIP extends Channel{
     connected=true;
   }
 
-  public void run(){
+  @SuppressWarnings("unchecked")
+public void run(){
     try{ 
       if(lport==-1){
         Class c=Class.forName(target);
@@ -129,10 +130,10 @@ public class ChannelForwardedTCPIP extends Channel{
     setRecipient(buf.getInt());
     setRemoteWindowSize(buf.getInt());
     setRemotePacketSize(buf.getInt());
-    byte[] addr=buf.getString();
+    buf.getString();
     int port=buf.getInt();
-    byte[] orgaddr=buf.getString();
-    int orgport=buf.getInt();
+    buf.getString();
+    buf.getInt();
 
     /*
     System.err.println("addr: "+new String(addr));
@@ -143,7 +144,7 @@ public class ChannelForwardedTCPIP extends Channel{
 
     synchronized(pool){
       for(int i=0; i<pool.size(); i++){
-        Object[] foo=(Object[])(pool.elementAt(i));
+        Object[] foo=(pool.elementAt(i));
         if(foo[0]!=session) continue;
         if(((Integer)foo[1]).intValue()!=port) continue;
         this.rport=port;
@@ -164,7 +165,7 @@ public class ChannelForwardedTCPIP extends Channel{
   static Object[] getPort(Session session, int rport){
     synchronized(pool){
       for(int i=0; i<pool.size(); i++){
-        Object[] bar=(Object[])(pool.elementAt(i));
+        Object[] bar=(pool.elementAt(i));
         if(bar[0]!=session) continue;
         if(((Integer)bar[1]).intValue()!=rport) continue;
         return bar;
@@ -174,10 +175,10 @@ public class ChannelForwardedTCPIP extends Channel{
   }
 
   static String[] getPortForwarding(Session session){
-    java.util.Vector foo=new java.util.Vector();
+    java.util.Vector<String> foo=new java.util.Vector<String>();
     synchronized(pool){
       for(int i=0; i<pool.size(); i++){
-        Object[] bar=(Object[])(pool.elementAt(i));
+        Object[] bar=(pool.elementAt(i));
         if(bar[0]!=session) continue;
         if(bar[3]==null){ foo.addElement(bar[1]+":"+bar[2]+":"); }
         else{ foo.addElement(bar[1]+":"+bar[2]+":"+bar[3]); }
@@ -220,7 +221,7 @@ public class ChannelForwardedTCPIP extends Channel{
     synchronized(pool){
       Object[] foo=null;
       for(int i=0; i<pool.size(); i++){
-        Object[] bar=(Object[])(pool.elementAt(i));
+        Object[] bar=(pool.elementAt(i));
         if(bar[0]!=session) continue;
         if(((Integer)bar[1]).intValue()!=rport) continue;
         foo=bar;
@@ -257,7 +258,7 @@ public class ChannelForwardedTCPIP extends Channel{
     synchronized(pool){
       rport=new int[pool.size()];
       for(int i=0; i<pool.size(); i++){
-        Object[] bar=(Object[])(pool.elementAt(i));
+        Object[] bar=(pool.elementAt(i));
         if(bar[0]==session) {
           rport[count++]=((Integer)bar[1]).intValue();
         }

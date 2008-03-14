@@ -41,7 +41,7 @@ public class Sftp implements Runnable{
 
   public void run(){
     try{
-      java.util.Vector cmds=new java.util.Vector();
+      java.util.Vector<String> cmds=new java.util.Vector<String>();
       byte[] buf=new byte[1024];
       int i;
       String str;
@@ -131,7 +131,7 @@ public class Sftp implements Runnable{
         if(cmds.size()==0)
           continue;
 
-        String cmd=(String)cmds.elementAt(0);
+        String cmd=cmds.elementAt(0);
         if(cmd.equals("quit")){
           c.quit();
           break;
@@ -149,7 +149,7 @@ public class Sftp implements Runnable{
               path=lhome;
           }
           else{
-            path=(String)cmds.elementAt(1);
+            path=cmds.elementAt(1);
           }
           try{
             if(cmd.equals("cd"))
@@ -168,7 +168,7 @@ public class Sftp implements Runnable{
         if(cmd.equals("rm")||cmd.equals("rmdir")||cmd.equals("mkdir")){
           if(cmds.size()<2)
             continue;
-          String path=(String)cmds.elementAt(1);
+          String path=cmds.elementAt(1);
           try{
             if(cmd.equals("rm"))
               c.rm(path);
@@ -188,7 +188,7 @@ public class Sftp implements Runnable{
         if(cmd.equals("lmkdir")){
           if(cmds.size()<2)
             continue;
-          String path=(String)cmds.elementAt(1);
+          String path=cmds.elementAt(1);
 
           java.io.File d=new java.io.File(c.lpwd(), path);
           if(!d.mkdir()){
@@ -204,10 +204,10 @@ public class Sftp implements Runnable{
         if(cmd.equals("chgrp")||cmd.equals("chown")||cmd.equals("chmod")){
           if(cmds.size()!=3)
             continue;
-          String path=(String)cmds.elementAt(2);
+          String path=cmds.elementAt(2);
           int foo=0;
           if(cmd.equals("chmod")){
-            byte[] bar=((String)cmds.elementAt(1)).getBytes();
+            byte[] bar=cmds.elementAt(1).getBytes();
             int k;
             for(int j=0; j<bar.length; j++){
               k=bar[j];
@@ -223,7 +223,7 @@ public class Sftp implements Runnable{
           }
           else{
             try{
-              foo=Integer.parseInt((String)cmds.elementAt(1));
+              foo=Integer.parseInt(cmds.elementAt(1));
             }
             catch(Exception e){
               continue;
@@ -264,9 +264,9 @@ public class Sftp implements Runnable{
         if(cmd.equals("ls")||cmd.equals("dir")){
           String path=".";
           if(cmds.size()==2)
-            path=(String)cmds.elementAt(1);
+            path=cmds.elementAt(1);
           try{
-            java.util.Vector vv=c.ls(path);
+            java.util.Vector<com.jcraft.jsch.ChannelSftp.LsEntry> vv=c.ls(path);
             if(vv!=null){
               for(int ii=0; ii<vv.size(); ii++){
                 //out.print(vv.elementAt(ii)+"\n");
@@ -288,7 +288,7 @@ public class Sftp implements Runnable{
         if(cmd.equals("lls")){
           String path=c.lpwd();
           if(cmds.size()==2)
-            path=(String)cmds.elementAt(1);
+            path=cmds.elementAt(1);
           try{
             java.io.File d=new java.io.File(path);
             String[] list=d.list();
@@ -309,11 +309,11 @@ public class Sftp implements Runnable{
         if(cmd.equals("get")||cmd.equals("put")){
           if(cmds.size()!=2&&cmds.size()!=3)
             continue;
-          String p1=(String)cmds.elementAt(1);
+          String p1=cmds.elementAt(1);
           //	  String p2=p1;
           String p2=".";
           if(cmds.size()==3)
-            p2=(String)cmds.elementAt(2);
+            p2=cmds.elementAt(2);
           try{
             SftpProgressMonitor monitor=new MyProgressMonitor(out);
             if(cmd.equals("get"))
@@ -332,8 +332,8 @@ public class Sftp implements Runnable{
         if(cmd.equals("ln")||cmd.equals("symlink")||cmd.equals("rename")){
           if(cmds.size()!=3)
             continue;
-          String p1=(String)cmds.elementAt(1);
-          String p2=(String)cmds.elementAt(2);
+          String p1=cmds.elementAt(1);
+          String p2=cmds.elementAt(2);
           try{
             if(cmd.equals("rename"))
               c.rename(p1, p2);
@@ -351,7 +351,7 @@ public class Sftp implements Runnable{
         if(cmd.equals("stat")||cmd.equals("lstat")){
           if(cmds.size()!=2)
             continue;
-          String p1=(String)cmds.elementAt(1);
+          String p1=cmds.elementAt(1);
           SftpATTRS attrs=null;
           try{
             if(cmd.equals("stat"))

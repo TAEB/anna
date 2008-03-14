@@ -32,7 +32,6 @@ package com.jcraft.jsch;
 public class UserAuthGSSAPIWithMIC extends UserAuth {
   private static final int SSH_MSG_USERAUTH_GSSAPI_RESPONSE=         60;
   private static final int SSH_MSG_USERAUTH_GSSAPI_TOKEN=            61;
-  private static final int SSH_MSG_USERAUTH_GSSAPI_EXCHANGE_COMPLETE=63;
   private static final int SSH_MSG_USERAUTH_GSSAPI_ERROR=            64;
   private static final int SSH_MSG_USERAUTH_GSSAPI_ERRTOK=           65;
   private static final int SSH_MSG_USERAUTH_GSSAPI_MIC=              66;
@@ -102,7 +101,7 @@ public class UserAuthGSSAPIWithMIC extends UserAuth {
       if(command==SSH_MSG_USERAUTH_BANNER){
         buf.getInt(); buf.getByte(); buf.getByte();
         byte[] _message=buf.getString();
-        byte[] lang=buf.getString();
+        buf.getString();
         String message=Util.byte2str(_message);
         if(userinfo!=null){
           userinfo.showMessage(message);
@@ -114,7 +113,7 @@ public class UserAuthGSSAPIWithMIC extends UserAuth {
 
     GSSContext context=null;
     try{
-      Class c=Class.forName(session.getConfig(method));
+    	Class<?> c=Class.forName(session.getConfig(method));
       context=(GSSContext)(c.newInstance());
     }
     catch(Exception e){ 

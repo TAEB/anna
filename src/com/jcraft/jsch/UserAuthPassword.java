@@ -92,7 +92,7 @@ class UserAuthPassword extends UserAuth{
 	if(command==SSH_MSG_USERAUTH_BANNER){
 	  buf.getInt(); buf.getByte(); buf.getByte();
 	  byte[] _message=buf.getString();
-	  byte[] lang=buf.getString();
+	  buf.getString();
           String message=Util.byte2str(_message);
 	  if(userinfo!=null){
 	    userinfo.showMessage(message);
@@ -102,7 +102,7 @@ class UserAuthPassword extends UserAuth{
 	if(command==SSH_MSG_USERAUTH_PASSWD_CHANGEREQ){
 	  buf.getInt(); buf.getByte(); buf.getByte(); 
 	  byte[] instruction=buf.getString();
-	  byte[] tag=buf.getString();
+	  buf.getString();
 	  if(userinfo==null || 
              !(userinfo instanceof UIKeyboardInteractive)){
             if(userinfo!=null){

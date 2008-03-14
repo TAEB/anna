@@ -46,8 +46,6 @@ public class ProxySOCKS4 implements Proxy{
   private OutputStream out;
   private Socket socket;
   private String user;
-  private String passwd;
-
   public ProxySOCKS4(String proxy_host){
     int port=DEFAULTPORT;
     String host=proxy_host;
@@ -68,7 +66,6 @@ public class ProxySOCKS4 implements Proxy{
   }
   public void setUserPasswd(String user, String passwd){
     this.user=user;
-    this.passwd=passwd;
   }
   public void connect(SocketFactory socket_factory, String host, int port, int timeout) throws JSchException{
     try{

@@ -46,7 +46,7 @@ public class KeyPairDSA extends KeyPair{
   void generate(int key_size) throws JSchException{
     this.key_size=key_size;
     try{
-      Class c=Class.forName(jsch.getConfig("keypairgen.dsa"));
+    	Class<?> c=Class.forName(jsch.getConfig("keypairgen.dsa"));
       KeyPairGenDSA keypairgen=(KeyPairGenDSA)(c.newInstance());
       keypairgen.init(key_size);
       P_array=keypairgen.getP();

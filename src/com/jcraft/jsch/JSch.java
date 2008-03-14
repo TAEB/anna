@@ -33,7 +33,7 @@ import java.io.InputStream;
 import java.util.Vector;
 
 public class JSch{
-  static java.util.Hashtable config=new java.util.Hashtable();
+  static java.util.Hashtable<String, String> config=new java.util.Hashtable<String, String>();
   static{
 //  config.put("kex", "diffie-hellman-group-exchange-sha1");
     config.put("kex", "diffie-hellman-group1-sha1,diffie-hellman-group-exchange-sha1");
@@ -102,8 +102,8 @@ public class JSch{
 
     config.put("CheckCiphers", "aes256-cbc,aes192-cbc,aes128-cbc");
   }
-  java.util.Vector pool=new java.util.Vector();
-  java.util.Vector identities=new java.util.Vector();
+  java.util.Vector<Session> pool=new java.util.Vector<Session>();
+  java.util.Vector<Identity> identities=new java.util.Vector<Identity>();
   private HostKeyRepository known_hosts=null;
 
   private static final Logger DEVNULL=new Logger(){
@@ -232,7 +232,7 @@ public class JSch{
   public void removeIdentity(String name) throws JSchException{
     synchronized(identities){
       for(int i=0; i<identities.size(); i++){
-        Identity identity=(Identity)(identities.elementAt(i));
+        Identity identity=(identities.elementAt(i));
 	if(!identity.getName().equals(name))
           continue;
         identities.removeElement(identity);
@@ -242,11 +242,11 @@ public class JSch{
     }
   }
 
-  public Vector getIdentityNames() throws JSchException{
-    Vector foo=new Vector();
+  public Vector<String> getIdentityNames() throws JSchException{
+    Vector<String> foo=new Vector<String>();
     synchronized(identities){
       for(int i=0; i<identities.size(); i++){
-        Identity identity=(Identity)(identities.elementAt(i));
+        Identity identity=(identities.elementAt(i));
         foo.addElement(identity.getName());
       }
     }
@@ -255,23 +255,23 @@ public class JSch{
 
   public void removeAllIdentity() throws JSchException{
     synchronized(identities){
-      Vector foo=getIdentityNames();
+      Vector<String> foo=getIdentityNames();
       for(int i=0; i<foo.size(); i++){
-        String name=((String)foo.elementAt(i));
+        String name=foo.elementAt(i);
         removeIdentity(name);
       }
     }
   }
 
   String getConfig(String key){ 
-    return (String)(config.get(key)); 
+    return (config.get(key)); 
   }
 
-  public static void setConfig(java.util.Hashtable newconf){
+  public static void setConfig(java.util.Hashtable<String, String> newconf){
     synchronized(config){
-      for(java.util.Enumeration e=newconf.keys() ; e.hasMoreElements() ;) {
-	String key=(String)(e.nextElement());
-	config.put(key, (String)(newconf.get(key)));
+      for(java.util.Enumeration<String> e=newconf.keys() ; e.hasMoreElements() ;) {
+	String key=(e.nextElement());
+	config.put(key, (newconf.get(key)));
       }
     }
   }

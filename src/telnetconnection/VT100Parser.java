@@ -59,10 +59,9 @@ public class VT100Parser implements Runnable
 		{
 			try
 			{
-				int availableChars;
 				while (running)
 				{
-					while ((availableChars=consoleData.available())>0)
+					while ((consoleData.available())>0)
 					{
 						update();
 					}

@@ -91,7 +91,7 @@ class UserAuthNone extends UserAuth{
       if(command==SSH_MSG_USERAUTH_BANNER){
 	buf.getInt(); buf.getByte(); buf.getByte();
 	byte[] _message=buf.getString();
-	byte[] lang=buf.getString();
+	buf.getString();
 	String message=null;
 	try{ 
           message=new String(_message, "UTF-8"); 
@@ -111,7 +111,7 @@ class UserAuthNone extends UserAuth{
       if(command==SSH_MSG_USERAUTH_FAILURE){
 	buf.getInt(); buf.getByte(); buf.getByte(); 
 	byte[] foo=buf.getString();
-	int partial_success=buf.getByte();
+	buf.getByte();
 	methods=new String(foo);
 //System.err.println("UserAuthNONE: "+methods+
 //		   " partial_success:"+(partial_success!=0));

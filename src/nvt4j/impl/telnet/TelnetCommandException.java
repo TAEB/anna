@@ -20,7 +20,11 @@ import java.io.IOException;
 
 public class TelnetCommandException extends IOException {
 
-    private TelnetCommand telnetCommand;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 7545101150532817267L;
+	private TelnetCommand telnetCommand;
 
     public TelnetCommand getTelnetCommand() { return telnetCommand; }
 

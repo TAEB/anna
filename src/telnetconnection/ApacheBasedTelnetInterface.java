@@ -8,7 +8,6 @@ import java.net.SocketException;
 
 import org.apache.commons.net.telnet.InvalidTelnetOptionException;
 
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.InputStream;
@@ -108,11 +107,6 @@ public class ApacheBasedTelnetInterface implements TelnetInterface
 			
 		}
 		// TODO: vt100 stuff goes here!
-	}
-	
-	private void parseInstruction()
-	{
-		
 	}
 
 }

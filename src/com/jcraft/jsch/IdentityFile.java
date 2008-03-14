@@ -53,18 +53,13 @@ class IdentityFile implements Identity{
   private  byte[] e_array;   // public exponent
   private  byte[] d_array;   // private exponent
  
-//  private String algname="ssh-dss";
-  private String algname="ssh-rsa";
-
-  private static final int ERROR=0;
+private static final int ERROR=0;
   private static final int RSA=1;
   private static final int DSS=2;
   private static final int UNKNOWN=3;
 
   private static final int OPENSSH=0;
   private static final int FSECURE=1;
-  private static final int PUTTY=2;
-
   private int type=ERROR;
   private int keytype=OPENSSH;
 
@@ -143,7 +138,7 @@ class IdentityFile implements Identity{
     this.identity=name;
     this.jsch=jsch;
     try{
-      Class c;
+    	Class<?> c;
       c=Class.forName((String)jsch.getConfig("3des-cbc"));
       cipher=(Cipher)(c.newInstance());
       key=new byte[cipher.getBlockSize()];   // 24
@@ -237,7 +232,7 @@ class IdentityFile implements Identity{
 	Buffer _buf=new Buffer(encoded_data);
 	_buf.getInt();  // 0x3f6ff9be
 	_buf.getInt();
-	byte[]_type=_buf.getString();
+	_buf.getString();
 	//System.err.println("type: "+new String(_type)); 
 	byte[] _cipher=_buf.getString();
 	String cipher=new String(_cipher);
@@ -435,7 +430,7 @@ class IdentityFile implements Identity{
 
   byte[] getSignature_rsa(byte[] data){
     try{      
-      Class c=Class.forName((String)jsch.getConfig("signature.rsa"));
+    	Class<?> c=Class.forName((String)jsch.getConfig("signature.rsa"));
       SignatureRSA rsa=(SignatureRSA)(c.newInstance());
 
       rsa.init();
@@ -479,7 +474,7 @@ class IdentityFile implements Identity{
 */
 
     try{      
-      Class c=Class.forName((String)jsch.getConfig("signature.dss"));
+    	Class<?> c=Class.forName((String)jsch.getConfig("signature.dss"));
       SignatureDSA dsa=(SignatureDSA)(c.newInstance());
       dsa.init();
       dsa.setPrvKey(prv_array, P_array, Q_array, G_array);
@@ -542,7 +537,7 @@ class IdentityFile implements Identity{
 	e_array=buf.getMPIntBits();
         d_array=buf.getMPIntBits();
 	n_array=buf.getMPIntBits();
-	byte[] u_array=buf.getMPIntBits();
+	buf.getMPIntBits();
 	p_array=buf.getMPIntBits();
 	q_array=buf.getMPIntBits();
         return true;

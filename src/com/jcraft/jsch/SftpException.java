@@ -30,7 +30,11 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 package com.jcraft.jsch;
 
 public class SftpException extends Exception{
-  //private static final long serialVersionUID=-5616888495583253811L;
+  /**
+	 * 
+	 */
+	private static final long serialVersionUID = 4000547827388411586L;
+//private static final long serialVersionUID=-5616888495583253811L;
   public int id;
   private Throwable cause=null;
   public SftpException (int id, String message) {

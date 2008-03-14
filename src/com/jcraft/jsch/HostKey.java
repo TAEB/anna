@@ -68,7 +68,8 @@ public class HostKey{
   public String getKey(){
     return new String(Util.toBase64(key, 0, key.length));
   }
-  public String getFingerPrint(JSch jsch){
+  @SuppressWarnings("unchecked")
+public String getFingerPrint(JSch jsch){
     HASH hash=null;
     try{
       Class c=Class.forName(jsch.getConfig("md5"));

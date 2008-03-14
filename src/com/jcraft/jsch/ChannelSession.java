@@ -36,7 +36,7 @@ class ChannelSession extends Channel{
 
   protected boolean agent_forwarding=false;
   protected boolean xforwading=false;
-  protected Hashtable env=null;
+  protected Hashtable<String, String> env=null;
 
   protected boolean pty=false;
 
@@ -59,7 +59,7 @@ class ChannelSession extends Channel{
   public void setXForwarding(boolean enable){
     xforwading=enable; 
   }
-  public void setEnv(Hashtable env){ 
+  public void setEnv(Hashtable<String, String> env){ 
     this.env=env; 
   }
 
@@ -119,7 +119,7 @@ class ChannelSession extends Channel{
     }
 
     if(env!=null){
-      for(Enumeration _env=env.keys() ; _env.hasMoreElements() ;) {
+      for(Enumeration<String> _env=env.keys() ; _env.hasMoreElements() ;) {
         String name=(String)(_env.nextElement());
         String value=(String)(env.get(name));
         request=new RequestEnv();

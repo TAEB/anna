@@ -76,7 +76,7 @@ public class DHGEX extends KeyExchange{
     this.I_C=I_C;      
 
     try{
-      Class c=Class.forName(session.getConfig("sha-1"));
+      Class<?> c=Class.forName(session.getConfig("sha-1"));
       sha=(HASH)(c.newInstance());
       sha.init();
     }
@@ -88,7 +88,7 @@ public class DHGEX extends KeyExchange{
     packet=new Packet(buf);
 
     try{
-      Class c=Class.forName(session.getConfig("dh"));
+      Class<?> c=Class.forName(session.getConfig("dh"));
       dh=(com.jcraft.jsch.DH)(c.newInstance());
       dh.init();
     }
@@ -258,7 +258,7 @@ System.err.println("0x"+Integer.toHexString(g[iii]&0xff)+",");
 
 	SignatureRSA sig=null;
 	try{
-	  Class c=Class.forName(session.getConfig("signature.rsa"));
+	  Class<?> c=Class.forName(session.getConfig("signature.rsa"));
 	  sig=(SignatureRSA)(c.newInstance());
 	  sig.init();
 	}
@@ -304,7 +304,7 @@ System.err.println("0x"+Integer.toHexString(g[iii]&0xff)+",");
 
 	SignatureDSA sig=null;
 	try{
-	  Class c=Class.forName(session.getConfig("signature.dss"));
+		Class<?> c=Class.forName(session.getConfig("signature.dss"));
 	  sig=(SignatureDSA)(c.newInstance());
 	  sig.init();
 	}

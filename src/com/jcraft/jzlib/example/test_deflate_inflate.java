@@ -2,7 +2,6 @@ package com.jcraft.jzlib.example;
 
 /* -*-mode:java; c-basic-offset:2; -*- */
 
-import java.io.*;
 import com.jcraft.jzlib.*;
 
 // Test deflate() with small buffers

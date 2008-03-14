@@ -33,7 +33,7 @@ import java.net.*;
 import java.io.*;
 
 class PortWatcher implements Runnable{
-  private static java.util.Vector pool=new java.util.Vector();
+  private static java.util.Vector<PortWatcher> pool=new java.util.Vector<PortWatcher>();
   private static InetAddress anyLocalAddress=null;
   static{
     // 0.0.0.0
@@ -56,10 +56,10 @@ class PortWatcher implements Runnable{
   ServerSocket ss;
 
   static String[] getPortForwarding(Session session){
-    java.util.Vector foo=new java.util.Vector();
+    java.util.Vector<String> foo=new java.util.Vector<String>();
     synchronized(pool){
       for(int i=0; i<pool.size(); i++){
-	PortWatcher p=(PortWatcher)(pool.elementAt(i));
+	PortWatcher p=(pool.elementAt(i));
 	if(p.session==session){
 	  foo.addElement(p.lport+":"+p.host+":"+p.rport);
 	}
@@ -81,7 +81,7 @@ class PortWatcher implements Runnable{
     }
     synchronized(pool){
       for(int i=0; i<pool.size(); i++){
-	PortWatcher p=(PortWatcher)(pool.elementAt(i));
+	PortWatcher p=(pool.elementAt(i));
 	if(p.session==session && p.lport==lport){
 	  if(/*p.boundaddress.isAnyLocalAddress() ||*/
              (anyLocalAddress!=null &&  p.boundaddress.equals(anyLocalAddress)) ||
@@ -113,7 +113,7 @@ class PortWatcher implements Runnable{
       PortWatcher[] foo=new PortWatcher[pool.size()];
       int count=0;
       for(int i=0; i<pool.size(); i++){
-	PortWatcher p=(PortWatcher)(pool.elementAt(i));
+	PortWatcher p=(pool.elementAt(i));
 	if(p.session==session) {
 	  p.delete();
 	  foo[count++]=p;

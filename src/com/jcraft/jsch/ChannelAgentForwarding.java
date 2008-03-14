@@ -29,7 +29,6 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.jcraft.jsch;
 
-import java.net.*;
 import java.util.Vector;
 
 class ChannelAgentForwarding extends Channel{
@@ -41,9 +40,6 @@ class ChannelAgentForwarding extends Channel{
   private final int SSH2_AGENT_IDENTITIES_ANSWER=12;
   private final int SSH2_AGENTC_SIGN_REQUEST=13;
   private final int SSH2_AGENT_SIGN_RESPONSE=14;
-  private final int SSH2_AGENTC_ADD_IDENTITY=17;
-  private final int SSH2_AGENTC_REMOVE_IDENTITY=18;
-  private final int SSH2_AGENTC_REMOVE_ALL_IDENTITIES=19;
   private final int SSH2_AGENT_FAILURE=30;
 
   boolean init=true;
@@ -103,7 +99,7 @@ class ChannelAgentForwarding extends Channel{
 
     int typ=rbuf.getByte();
 
-    Vector identities=getSession().jsch.identities;
+    Vector<Identity> identities=getSession().jsch.identities;
     UserInfo userinfo=getSession().getUserInfo();
 
     if(typ==SSH2_AGENTC_REQUEST_IDENTITIES){ 
@@ -134,7 +130,7 @@ class ChannelAgentForwarding extends Channel{
     else if(typ==SSH2_AGENTC_SIGN_REQUEST){
       byte[] blob=rbuf.getString();
       byte[] data=rbuf.getString();
-      int flags=rbuf.getInt();
+      rbuf.getInt();
 
 //      if((flags & 1)!=0){ //SSH_AGENT_OLD_SIGNATURE // old OpenSSH 2.0, 2.1
 //        datafellows = SSH_BUG_SIGBLOB;

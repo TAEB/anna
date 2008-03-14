@@ -29,8 +29,6 @@ EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 package com.jcraft.jsch.jcraft;
 
-import com.jcraft.jsch.MAC;
-
 public class HMACMD596 extends HMACMD5{
 
   private static final String name="hmac-md5-96";

@@ -79,7 +79,8 @@ public class DHG1 extends KeyExchange{
   private Buffer buf;
   private Packet packet;
 
-  public void init(Session session,
+  @SuppressWarnings("unchecked")
+public void init(Session session,
 		   byte[] V_S, byte[] V_C, byte[] I_S, byte[] I_C) throws Exception{
     this.session=session;
     this.V_S=V_S;      
@@ -136,7 +137,8 @@ public class DHG1 extends KeyExchange{
     state=SSH_MSG_KEXDH_REPLY;
   }
 
-  public boolean next(Buffer _buf) throws Exception{
+  @SuppressWarnings("unchecked")
+public boolean next(Buffer _buf) throws Exception{
     int i,j;
 
     switch(state){

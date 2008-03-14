@@ -36,7 +36,7 @@ class UserAuthPublicKey extends UserAuth{
   public boolean start(Session session) throws Exception{
     super.start(session);
 
-    Vector identities=session.jsch.identities;
+    Vector<Identity> identities=session.jsch.identities;
 
     byte[] passphrase=null;
     byte[] _username=null;
@@ -88,7 +88,7 @@ class UserAuthPublicKey extends UserAuth{
             else if(command==SSH_MSG_USERAUTH_BANNER){
               buf.getInt(); buf.getByte(); buf.getByte();
               byte[] _message=buf.getString();
-              byte[] lang=buf.getString();
+              buf.getString();
               String message=null;
               try{ message=new String(_message, "UTF-8"); }
               catch(java.io.UnsupportedEncodingException e){
@@ -197,7 +197,7 @@ class UserAuthPublicKey extends UserAuth{
           else if(command==SSH_MSG_USERAUTH_BANNER){
             buf.getInt(); buf.getByte(); buf.getByte();
             byte[] _message=buf.getString();
-            byte[] lang=buf.getString();
+            buf.getString();
             String message=null;
             try{ message=new String(_message, "UTF-8"); }
             catch(java.io.UnsupportedEncodingException e){

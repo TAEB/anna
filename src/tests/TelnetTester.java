@@ -1,9 +1,6 @@
 package tests;
 
 import java.io.IOException;
-import java.io.OutputStream;
-import java.io.InputStream;
-import nvt4j.Terminal;
 
 public class TelnetTester
 {

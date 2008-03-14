@@ -70,8 +70,6 @@ public class Session implements Runnable{
 
   private byte[] I_C; // the payload of the client's SSH_MSG_KEXINIT
   private byte[] I_S; // the payload of the server's SSH_MSG_KEXINIT
-  private byte[] K_S; // the host key
-
   private byte[] session_id;
 
   private byte[] IVc2s;
@@ -119,13 +117,12 @@ public class Session implements Runnable{
 
   SocketFactory socket_factory=null;
 
-  private java.util.Hashtable config=null;
+  private java.util.Hashtable<String, String> config=null;
 
   private Proxy proxy=null;
   private UserInfo userinfo;
 
   private String hostKeyAlias=null;
-  private int serverAliveInterval=0;
   private int serverAliveCountMax=1;
 
   protected boolean daemon_thread=false;
@@ -157,7 +154,7 @@ public class Session implements Runnable{
     io=new IO();
     if(random==null){
       try{
-	Class c=Class.forName(getConfig("random"));
+    	  Class<?> c=Class.forName(getConfig("random"));
         random=(Random)(c.newInstance());
       }
       catch(Exception e){ 
@@ -331,7 +328,7 @@ public class Session implements Runnable{
 
       UserAuth ua=null;
       try{
-	Class c=Class.forName(getConfig("userauth.none"));
+    	  Class<?> c=Class.forName(getConfig("userauth.none"));
         ua=(UserAuth)(c.newInstance());
       }
       catch(Exception e){ 
@@ -397,7 +394,7 @@ public class Session implements Runnable{
 
 	  ua=null;
           try{
-            Class c=null;
+        	  Class<?> c=null;
             if(getConfig("userauth."+method)!=null){
               c=Class.forName(getConfig("userauth."+method));
               ua=(UserAuth)(c.newInstance());
@@ -512,7 +509,7 @@ public class Session implements Runnable{
 
     KeyExchange kex=null;
     try{
-      Class c=Class.forName(getConfig(guess[KeyExchange.PROPOSAL_KEX_ALGS]));
+    	Class<?> c=Class.forName(getConfig(guess[KeyExchange.PROPOSAL_KEX_ALGS]));
       kex=(KeyExchange)(c.newInstance());
     }
     catch(Exception e){ 
@@ -974,7 +971,7 @@ key_type+" key fingerprint is "+key_fprint+".\n"+
     MACs2c=hash.digest();
 
     try{
-      Class c;
+    	Class<?> c;
       String method;
   
       method=guess[KeyExchange.PROPOSAL_ENC_ALGS_STOC];
@@ -1645,7 +1642,7 @@ break;
       if(method.equals("zlib") ||
          (isAuthed && method.equals("zlib@openssh.com"))){
         try{
-          Class c=Class.forName(foo);
+        	Class<?> c=Class.forName(foo);
           deflater=(Compression)(c.newInstance());
           int level=6;
           try{ level=Integer.parseInt(getConfig("compression_level"));}
@@ -1669,7 +1666,7 @@ break;
       if(method.equals("zlib") ||
          (isAuthed && method.equals("zlib@openssh.com"))){
         try{
-          Class c=Class.forName(foo);
+        	Class<?> c=Class.forName(foo);
           inflater=(Compression)(c.newInstance());
           inflater.init(Compression.INFLATER, 0);
         }
@@ -1708,22 +1705,23 @@ break;
     }
   }
 
-  public void setConfig(java.util.Properties newconf){
+  @SuppressWarnings("unchecked")
+public void setConfig(java.util.Properties newconf){
     setConfig((java.util.Hashtable)newconf);
   }
  
-  public synchronized void setConfig(java.util.Hashtable newconf){
+  public synchronized void setConfig(java.util.Hashtable<String, String> newconf){
     if(config==null) 
-      config=new java.util.Hashtable();
-    for(java.util.Enumeration e=newconf.keys() ; e.hasMoreElements() ;) {
-      String key=(String)(e.nextElement());
-      config.put(key, (String)(newconf.get(key)));
+      config=new java.util.Hashtable<String, String>();
+    for(java.util.Enumeration<String> e=newconf.keys() ; e.hasMoreElements() ;) {
+      String key=(e.nextElement());
+      config.put(key, (newconf.get(key)));
     }
   }
 
   public synchronized void setConfig(String key, String value){
     if(config==null){
-      config=new java.util.Hashtable();
+      config=new java.util.Hashtable<String, String>();
     }
     config.put(key, value);
   }
@@ -1804,7 +1802,6 @@ break;
   }
   public void setServerAliveInterval(int interval) throws JSchException {
     setTimeout(interval);
-    this.serverAliveInterval=interval;
   }
   public void setServerAliveCountMax(int count){
     this.serverAliveCountMax=count;
@@ -1822,11 +1819,11 @@ break;
                            "CheckCiphers: "+ciphers);
     }
 
-    java.util.Vector result=new java.util.Vector();
+    java.util.Vector<String> result=new java.util.Vector<String>();
     String[] _ciphers=Util.split(ciphers, ",");
     for(int i=0; i<_ciphers.length; i++){
       try{
-        Class c=Class.forName(getConfig(_ciphers[i]));
+    	  Class<?> c=Class.forName(getConfig(_ciphers[i]));
         Cipher _c=(Cipher)(c.newInstance());
         _c.init(Cipher.ENCRYPT_MODE, 
                 new byte[_c.getBlockSize()],

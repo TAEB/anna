@@ -50,7 +50,7 @@ public class KeyPairRSA extends KeyPair{
   void generate(int key_size) throws JSchException{
     this.key_size=key_size;
     try{
-      Class c=Class.forName(jsch.getConfig("keypairgen.rsa"));
+    	Class<?> c=Class.forName(jsch.getConfig("keypairgen.rsa"));
       KeyPairGenRSA keypairgen=(KeyPairGenRSA)(c.newInstance());
       keypairgen.init(key_size);
       pub_array=keypairgen.getE();
@@ -127,7 +127,7 @@ public class KeyPairRSA extends KeyPair{
 	  pub_array=buf.getMPIntBits();
 	  prv_array=buf.getMPIntBits();
 	  n_array=buf.getMPIntBits();
-	  byte[] u_array=buf.getMPIntBits();
+	  buf.getMPIntBits();
 	  p_array=buf.getMPIntBits();
 	  q_array=buf.getMPIntBits();
 	  return true;
