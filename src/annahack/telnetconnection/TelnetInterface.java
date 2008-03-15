@@ -11,7 +11,7 @@ public interface TelnetInterface
 	public int getdimy();
 	
 	public TerminalSymbol peek(int x, int y) throws IOException;
-	public char[] peekLine(int x) throws IOException;
+	public byte[] peekLine(int x) throws IOException;
 	
 	public void processData(String data);
 	
