@@ -9,9 +9,10 @@ import com.jcraft.jcterm.JCTermAWT;
 public abstract class Emulator
 {
 	protected TerminalSymbol[][] screen;
-	protected byte fground;
-	protected byte bground;
-	protected boolean light_colors;
+	protected byte fground=7;
+	protected byte bground=0;
+	protected boolean light_colors=false;
+	protected boolean reverse_colors=false;
 
 	// Added methods from JCTermAWT
 	public byte getColor(byte index)
@@ -211,6 +212,7 @@ public abstract class Emulator
 	protected void exit_attribute_mode()
 	{
 		light_colors=false;
+		reverse_colors=false;
 	}
 
 	protected void exit_standout_mode()
@@ -237,8 +239,7 @@ public abstract class Emulator
 
 	protected void enter_reverse_mode()
 	{
-		// I think I'll have to pass on this one
-		throw new RuntimeException("Reverse mode not supported");
+		reverse_colors=true;
 	}
 
 	protected void change_scroll_region(int y1, int y2)
@@ -393,7 +394,7 @@ public abstract class Emulator
 	private void writeCharacter(byte c)
 	{
 		screen[x][y]=new TerminalSymbol(c,
-				(byte)(fground+(light_colors?8:0)), bground);
+				(byte)(fground+(light_colors?8:0)), bground, reverse_colors);
 		y++;
 		check_region();
 	}
