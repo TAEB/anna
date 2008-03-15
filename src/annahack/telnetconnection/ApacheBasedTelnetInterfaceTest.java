@@ -39,7 +39,7 @@ public class ApacheBasedTelnetInterfaceTest
 				Thread.sleep(100);
 			}
 			for (int i=0; i<24; i++)
-				System.out.println(connection.peekLine(i));
+				System.out.println(new String(connection.peekLine(i)));
 			String input=in.readLine();
 			connection.send(input.getBytes());
 		}
