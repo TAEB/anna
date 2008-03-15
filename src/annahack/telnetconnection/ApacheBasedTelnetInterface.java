@@ -1,14 +1,10 @@
 package annahack.telnetconnection;
 
-import org.apache.commons.net.telnet.EchoOptionHandler;
-import org.apache.commons.net.telnet.SuppressGAOptionHandler;
 import org.apache.commons.net.telnet.TelnetClient;
-import org.apache.commons.net.telnet.TerminalTypeOptionHandler;
 import java.net.SocketException;
 import org.apache.commons.net.telnet.InvalidTelnetOptionException;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.InputStream;
 
 public class ApacheBasedTelnetInterface extends EmulatorVT100 implements TelnetInterface
 {

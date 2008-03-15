@@ -3,7 +3,6 @@
 package annahack.telnetconnection;
 
 import java.io.InputStream;
-import com.jcraft.jcterm.JCTermAWT;
 
 public class EmulatorVT100 extends Emulator implements Runnable
 {
