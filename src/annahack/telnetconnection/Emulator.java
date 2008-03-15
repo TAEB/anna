@@ -349,7 +349,6 @@ public abstract class Emulator
 		ry = y;
 
 		byte b = getChar();
-		term.draw_cursor();
 		// System.out.print(new
 		// Character((char)b)+"["+Integer.toHexString(b&0xff)+"]");
 		if ((b & 0x80) != 0)
@@ -389,7 +388,7 @@ public abstract class Emulator
 		}
 		term.redraw(rx, ry - char_height, w, h);
 		term.setCursor(x, y);
-		term.draw_cursor();
+		// no draw cursor!();
 	}
 
 	private void check_region()
@@ -409,14 +408,14 @@ public abstract class Emulator
 			{
 				y -= char_height;
 			}
-			term.draw_cursor();
+			// no draw cursor!();
 			term.scroll_area(0, region_y1 * char_height, term_width
 					* char_width, (region_y2 - region_y1) * char_height, 0,
 					-char_height);
 			term.clear_area(0, y - char_height, term_width * char_width, y);
 			term.redraw(0, 0, term_width * char_width, region_y2 * char_height);
 			term.setCursor(x, y);
-			term.draw_cursor();
+			// no draw cursor!();
 		}
 	}
 }
