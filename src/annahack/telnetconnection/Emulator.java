@@ -229,20 +229,20 @@ public abstract class Emulator{
     term.draw_cursor();
   }
 
+  protected void parm_up_cursor(int lines){
+	  x=Math.max(x-lines, 1);
+  }
+
   protected void parm_down_cursor(int lines){
-	  y=Math.min(y+lines, term_height);
+	  x=Math.min(x+lines, term_height);
   }
 
   protected void parm_left_cursor(int chars){
-	  x=Math.min(x+chars, term_width);
+	  y=Math.max(y-chars, 1);
   }
 
   protected void parm_right_cursor(int chars){
-	  x=Math.max(x-chars, 1);
-  }
-
-  protected void parm_up_cursor(int lines){
-	  y=Math.max(y-lines, 1);
+	  y=Math.min(y+chars, term_width);
   }
 
   protected void clr_eol(){
