@@ -12,6 +12,7 @@ public abstract class Emulator
 	protected TerminalSymbol[][] screen;
 	protected byte fground;
 	protected byte bground;
+	protected boolean light_colors;
 
 	// Added methods from JCTermAWT
 	public byte getColor(byte index)
@@ -210,9 +211,7 @@ public abstract class Emulator
 
 	protected void exit_attribute_mode()
 	{
-		// TODO
-		// System.out.println("turn off all attributes");
-		// term.resetAllAttributes();
+		light_colors=false;
 	}
 
 	protected void exit_standout_mode()
@@ -228,8 +227,7 @@ public abstract class Emulator
 
 	protected void enter_bold_mode()
 	{
-		// I don't think nethack uses this
-		throw new RuntimeException("Bold mode not supported");
+		light_colors=true;
 	}
 
 	protected void enter_underline_mode()
@@ -356,11 +354,13 @@ public abstract class Emulator
 			b2[1] = getChar();
 			
 			//I don't know why this does this, but it's what the other one did
-			screen[x][y]=new TerminalSymbol(b2[0]);
+			screen[x][y]=new TerminalSymbol(b2[0],
+					(byte)(fground+(light_colors?8:0)), bground);
 			x++;
-			screen[x][y]=new TerminalSymbol(b2[1]);
+			screen[x][y]=new TerminalSymbol(b2[1],
+					(byte)(fground+(light_colors?8:0)), bground);
 			
-			x += 2;
+			x ++;
 			w = char_width * 2;
 			h = char_height;
 		} else
