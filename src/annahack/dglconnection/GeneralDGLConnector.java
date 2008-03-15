@@ -1,15 +1,39 @@
 package annahack.dglconnection;
 
 import java.net.Socket;
+import org.apache.commons.net.telnet.EchoOptionHandler;
+import org.apache.commons.net.telnet.SuppressGAOptionHandler;
+import org.apache.commons.net.telnet.TelnetClient;
+import org.apache.commons.net.telnet.TerminalTypeOptionHandler;
+import java.net.SocketException;
+import java.io.IOException;
+import org.apache.commons.net.telnet.InvalidTelnetOptionException;
+import annahack.telnetconnection.*;
 
-class GeneralDGLConnector
+abstract class GeneralDGLConnector
 {
-	Socket connection;
+	ApacheBasedTelnetInterface connection;
 	
 	public GeneralDGLConnector()
+		throws SocketException, IOException, InvalidTelnetOptionException
 	{
-		connection=new Socket(); 
+		TelnetClient tc;
+		tc = new TelnetClient();
+
+        TerminalTypeOptionHandler ttopt = new TerminalTypeOptionHandler("VT100", false, false, true, false);
+        EchoOptionHandler echoopt = new EchoOptionHandler(true, false, true, false);
+        SuppressGAOptionHandler gaopt = new SuppressGAOptionHandler(true, true, true, true);
+
+        tc.addOptionHandler(ttopt);
+        tc.addOptionHandler(echoopt);
+        tc.addOptionHandler(gaopt);
+        
+		tc.connect(server(), 23);
+		
+		connection=new ApacheBasedTelnetInterface(tc);
 	}
+	
+	abstract String server();
 	
 	public boolean inGame()
 	{
