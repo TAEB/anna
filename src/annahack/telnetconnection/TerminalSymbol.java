@@ -5,24 +5,22 @@ public class TerminalSymbol
 	
 	public TerminalSymbol(byte c)
 	{
-		this.c=c;
-		this.fg=7;
-		this.bg=0;
-		this.inverted=false;
+		this(c, (byte)7);
 	}
 	public TerminalSymbol(byte c, byte fg)
 	{
-		this(c);
-		this.fg=fg;
+		this(c, fg, (byte)0);
 	}
 	public TerminalSymbol(byte c, byte fg, byte bg)
 	{
-		this(c, fg);
-		this.bg=bg;
+		this(c, fg, bg, false);
 	}
 	public TerminalSymbol(byte c, byte fg, byte bg, boolean inverted)
 	{
-		this(c, fg, bg);
+		this.c=c;
+		this.fg=fg;
+		this.bg=bg;
+		this.inverted=false;
 		this.inverted=inverted;
 	}
 	//ANSI codes are 0-7, +8 for bright
