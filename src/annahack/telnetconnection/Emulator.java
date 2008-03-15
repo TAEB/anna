@@ -353,14 +353,8 @@ public abstract class Emulator
 			b2[0] = b;
 			b2[1] = getChar();
 			
-			//I don't know why this does this, but it's what the other one did
-			screen[x][y]=new TerminalSymbol(b2[0],
-					(byte)(fground+(light_colors?8:0)), bground);
-			x++;
-			screen[x][y]=new TerminalSymbol(b2[1],
-					(byte)(fground+(light_colors?8:0)), bground);
-			
-			x ++;
+			writeCharacter(b2[0]);
+			writeCharacter(b2[1]);
 		} else
 		{
 			pushChar(b);
@@ -372,7 +366,13 @@ public abstract class Emulator
 				// "+buf[bufs-foo]);
 				// System.out.println("foo="+foo+" ["+new String(buf, bufs-foo,
 				// foo));
-				term.clear_area(x, y - char_height, x + asc * char_width, y);
+				for (int c=bufs-asc; c<bufs; c++)
+				{
+					screen[x][y]=new TerminalSymbol(buf[c],
+							(byte)(fground+(light_colors?8:0)), bground);
+					y++;
+					check_region();
+				}
 				term.drawBytes(buf, bufs - asc, asc, x, y);
 			} else
 			{
@@ -406,5 +406,12 @@ public abstract class Emulator
 			}
 			screen [region_x2-1]=new TerminalSymbol[term_width];
 		}
+	}
+	
+	private void writeCharacter(byte c)
+	{
+		screen[x][y]=new TerminalSymbol(c,
+				(byte)(fground+(light_colors?8:0)), bground);
+		check_region();
 	}
 }
