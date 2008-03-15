@@ -110,12 +110,12 @@ public abstract class Emulator
 		}
 	}
 
-	void pushChar(byte foo) throws java.io.IOException
+	void pushChar(byte chr) throws java.io.IOException
 	{
 		// System.out.println("pushChar: "+new
 		// Character((char)foo)+"["+Integer.toHexString(foo&0xff)+"]");
 		buflen++;
-		buf[--bufs] = foo;
+		buf[--bufs] = chr;
 	}
 
 	int getASCII(int len) throws java.io.IOException
@@ -127,7 +127,7 @@ public abstract class Emulator
 		}
 		if (len > buflen)
 			len = buflen;
-		int foo = len;
+		int offset = len;
 		byte tmp;
 		while (len > 0)
 		{
@@ -142,7 +142,7 @@ public abstract class Emulator
 			break;
 		}
 		// System.out.println(" return "+(foo-len));
-		return foo - len;
+		return offset - len;
 	}
 
 	protected int term_width = 80;
@@ -361,35 +361,29 @@ public abstract class Emulator
 					(byte)(fground+(light_colors?8:0)), bground);
 			
 			x ++;
-			w = char_width * 2;
-			h = char_height;
 		} else
 		{
 			pushChar(b);
-			int foo = getASCII(term_width - (x / char_width));
-			if (foo != 0)
+			int asc = getASCII(term_width - x);
+			if (asc != 0)
 			{
 				// System.out.println("foo="+foo+" "+x+", "+(y-char_height)+"
 				// "+(x+foo*char_width)+" "+y+" "+buf+" "+bufs+" "+b+"
 				// "+buf[bufs-foo]);
 				// System.out.println("foo="+foo+" ["+new String(buf, bufs-foo,
 				// foo));
-				term.clear_area(x, y - char_height, x + foo * char_width, y);
-				term.drawBytes(buf, bufs - foo, foo, x, y);
+				term.clear_area(x, y - char_height, x + asc * char_width, y);
+				term.drawBytes(buf, bufs - asc, asc, x, y);
 			} else
 			{
-				foo = 1;
-				term.clear_area(x, y - char_height, x + foo * char_width, y);
+				asc = 1;
+				term.clear_area(x, y - char_height, x + asc * char_width, y);
 				b1[0] = getChar();
-				term.drawBytes(b1, 0, foo, x, y);
+				term.drawBytes(b1, 0, asc, x, y);
 				// System.out.print("["+Integer.toHexString(bar[0]&0xff)+"]");
 			}
-			x += (char_width * foo);
-			w = char_width * foo;
-			h = char_height;
+			y += asc;
 		}
-		term.redraw(rx, ry - char_height, w, h);
-		// no draw cursor!();
 	}
 
 	private void check_region()
