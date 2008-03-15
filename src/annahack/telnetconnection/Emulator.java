@@ -272,17 +272,15 @@ public abstract class Emulator{
 
   protected void tab(){
     x=((x/tab+1)*tab);
-    if(x>=term_width*char_width){
+    if(x>term_width)
+    {
       x=0;
-      y++;
+      cursor_down();
     }
-    term.setCursor(x, y);
-    term.draw_cursor();
   }
 
   protected void carriage_return(){
     x=1;
-    
   }
 
   protected void cursor_left(){
