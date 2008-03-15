@@ -334,16 +334,7 @@ public abstract class Emulator
 
 	protected void draw_text() throws java.io.IOException
 	{
-
-		int rx;
-		int ry;
-		int w;
-		int h;
-
 		check_region();
-
-		rx = x;
-		ry = y;
 
 		byte b = getChar();
 		// System.out.print(new
