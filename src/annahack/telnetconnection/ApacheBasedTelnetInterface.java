@@ -28,34 +28,34 @@ public class ApacheBasedTelnetInterface extends EmulatorVT100 implements TelnetI
 		updater.run();
 	}
 	
-	@Override
+	//@Override
 	public int getdimx()
 	{
 		return 24;
 	}
-	@Override
+	//@Override
 	public int getdimy()
 	{
 		return 80;
 	}
-	@Override
+	//@Override
 	public int getcursorx()
 	{
 		return x;
 	}
-	@Override
+	//@Override
 	public int getcursory()
 	{
 		return y;
 	}
 
-	@Override
+	//@Override
 	public TerminalSymbol peek(int x, int y) throws IOException
 	{
 		return screen[x][y];
 	}
 
-	@Override
+	//@Override
 	public byte[] peekLine(int x) throws IOException
 	{
 		byte[] peek=new byte[80];
@@ -66,14 +66,14 @@ public class ApacheBasedTelnetInterface extends EmulatorVT100 implements TelnetI
 		return peek;
 	}
 
-	@Override
+	//@Override
 	public void send(byte[] s) throws IOException
 	{
         outstr.write(s);
         outstr.flush();
 	}
 
-	@Override
+	//@Override
 	public void send(char c) throws IOException
 	{
         outstr.write(c);
