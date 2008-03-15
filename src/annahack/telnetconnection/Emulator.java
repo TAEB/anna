@@ -238,10 +238,11 @@ public abstract class Emulator{
   }
 
   protected void parm_right_cursor(int chars){
-    term.draw_cursor();
-    x+=(chars)*char_width;
-    term.setCursor(x, y);
-    term.draw_cursor();
+	  x=Math.max(x-chars, 1);
+  }
+
+  protected void parm_up_cursor(int lines){
+	  y=Math.max(y-lines, 1);
   }
 
   protected void clr_eol(){
@@ -264,15 +265,6 @@ public abstract class Emulator{
         *char_height);
     term.redraw(x, y-char_height, term_width*char_width-x, term_height
         *char_height-y+char_height);
-    term.draw_cursor();
-  }
-
-  protected void parm_up_cursor(int lines){
-    term.draw_cursor();
-    //	  x=0;
-    //	  y-=char_height;
-    y-=(lines)*char_height;
-    term.setCursor(x, y);
     term.draw_cursor();
   }
 
