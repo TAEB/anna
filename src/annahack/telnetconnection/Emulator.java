@@ -230,17 +230,11 @@ public abstract class Emulator{
   }
 
   protected void parm_down_cursor(int lines){
-    term.draw_cursor();
-    y+=(lines)*char_height;
-    term.setCursor(x, y);
-    term.draw_cursor();
+	  y=Math.min(y+lines, term_height);
   }
 
   protected void parm_left_cursor(int chars){
-    term.draw_cursor();
-    x-=(chars)*char_width;
-    term.setCursor(x, y);
-    term.draw_cursor();
+	  x=Math.min(x+chars, term_width);
   }
 
   protected void parm_right_cursor(int chars){
@@ -251,17 +245,17 @@ public abstract class Emulator{
   }
 
   protected void clr_eol(){
-    term.draw_cursor();
-    term.clear_area(x, y-char_height, term_width*char_width, y);
-    term.redraw(x, y-char_height, (term_width)*char_width-x, char_height);
-    term.draw_cursor();
+	  for (int i=x-1; i<term_width; i++)
+	  {
+		  screen[i][y]=null;
+	  }
   }
 
   protected void clr_bol(){
-    term.draw_cursor();
-    term.clear_area(0, y-char_height, x, y);
-    term.redraw(0, y-char_height, x, char_height);
-    term.draw_cursor();
+	  for (int i=0; i<x; i++)
+	  {
+		  screen[i][y]=null;
+	  }
   }
 
   protected void clr_eos(){
