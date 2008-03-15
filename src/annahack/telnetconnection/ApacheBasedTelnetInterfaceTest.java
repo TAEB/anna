@@ -2,6 +2,8 @@ package annahack.telnetconnection;
 
 import org.apache.commons.net.telnet.*;
 import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 public class ApacheBasedTelnetInterfaceTest
 {
@@ -10,7 +12,7 @@ public class ApacheBasedTelnetInterfaceTest
 	 * @param args
 	 */
 	public static void main(String[] args)
-		throws InvalidTelnetOptionException, IOException
+		throws InvalidTelnetOptionException, IOException, InterruptedException
 	{
 		TelnetClient tc;
 		tc = new TelnetClient();
@@ -26,6 +28,21 @@ public class ApacheBasedTelnetInterfaceTest
 		tc.connect("nethack.kraln.com", 23);
 		
 		TelnetInterface connection=new ApacheBasedTelnetInterface(tc);
+		
+		BufferedReader in=new BufferedReader(new InputStreamReader(System.in));
+		
+		while (true)
+		{
+			while (!connection.waiting())
+			{
+				System.out.println("not waiting...");
+				Thread.sleep(100);
+			}
+			for (int i=0; i<24; i++)
+				System.out.println(connection.peekLine(i));
+			String input=in.readLine();
+			connection.send(input.getBytes());
+		}
 	}
 
 }
