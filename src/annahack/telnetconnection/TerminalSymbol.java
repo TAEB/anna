@@ -3,18 +3,18 @@ package annahack.telnetconnection;
 public class TerminalSymbol
 {
 	
-	public TerminalSymbol(char c)
+	public TerminalSymbol(byte c)
 	{
 		this.c=c;
 		this.fg=7;
 		this.bg=0;
 	}
-	public TerminalSymbol(char c, byte fg)
+	public TerminalSymbol(byte c, byte fg)
 	{
 		this(c);
 		this.fg=fg;
 	}
-	public TerminalSymbol(char c, byte fg, byte bg)
+	public TerminalSymbol(byte c, byte fg, byte bg)
 	{
 		this(c, fg);
 		this.bg=bg;
@@ -22,8 +22,8 @@ public class TerminalSymbol
 	//ANSI codes are 0-7, +8 for bright
 	private byte fg;	//character color
 	private byte bg;	//background color
-	private char c;
-	char getChar()
+	private byte c;
+	byte getChar()
 	{
 		return c;
 	}
