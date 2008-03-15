@@ -8,6 +8,7 @@ public class TerminalSymbol
 		this.c=c;
 		this.fg=7;
 		this.bg=0;
+		this.inverted=false;
 	}
 	public TerminalSymbol(byte c, byte fg)
 	{
@@ -19,10 +20,16 @@ public class TerminalSymbol
 		this(c, fg);
 		this.bg=bg;
 	}
+	public TerminalSymbol(byte c, byte fg, byte bg, boolean inverted)
+	{
+		this(c, fg, bg);
+		this.inverted=inverted;
+	}
 	//ANSI codes are 0-7, +8 for bright
 	private byte fg;	//character color
 	private byte bg;	//background color
 	private byte c;
+	private boolean inverted;
 	byte getChar()
 	{
 		return c;
@@ -34,5 +41,9 @@ public class TerminalSymbol
 	byte getBg()
 	{
 		return bg;
+	}
+	boolean inverted()
+	{
+		return inverted;
 	}
 }
