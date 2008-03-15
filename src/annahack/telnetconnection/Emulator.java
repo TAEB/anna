@@ -259,10 +259,11 @@ public abstract class Emulator{
   }
 
   protected void clr_eos(){
-    term.clear_area(x, y-char_height, term_width*char_width, term_height
-        *char_height);
-    term.redraw(x, y-char_height, term_width*char_width-x, term_height
-        *char_height-y+char_height);
+	  clr_eol();
+	  for (int j=y; j<term_height; j++)
+	  {
+		  screen[j]=new TerminalSymbol[term_width];
+	  }
   }
 
   protected void bell(){
