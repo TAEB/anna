@@ -13,8 +13,6 @@ public interface TelnetInterface
 	public TerminalSymbol peek(int x, int y) throws IOException;
 	public byte[] peekLine(int x) throws IOException;
 	
-	public void processData(String data);
-	
 	public int getcursorx();
 	public int getcursory();
 }
