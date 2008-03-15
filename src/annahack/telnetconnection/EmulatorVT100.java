@@ -5,7 +5,7 @@ package annahack.telnetconnection;
 import java.io.InputStream;
 import com.jcraft.jcterm.JCTermAWT;
 
-public class EmulatorVT100 extends Emulator
+public class EmulatorVT100 extends Emulator implements Runnable
 {
 
 	public EmulatorVT100(TerminalSymbol[][] screen, InputStream in)
@@ -17,11 +17,11 @@ public class EmulatorVT100 extends Emulator
 	{
 		this.in = in;
 	}
-
-	// none of this bullshit
-	// public void setTerm(Term term){
-	// this.term=term;
-	// }
+	
+	public void run()
+	{
+		start();
+	}
 
 	public void start()
 	{
@@ -39,7 +39,6 @@ public class EmulatorVT100 extends Emulator
 		{
 			while (true)
 			{
-
 				b = getChar();
 
 				// System.out.println("@0: "+ new
