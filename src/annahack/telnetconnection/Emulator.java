@@ -271,41 +271,26 @@ public abstract class Emulator{
   }
 
   protected void tab(){
-    term.draw_cursor();
-    x=(((x/char_width)/tab+1)*tab*char_width);
+    x=((x/tab+1)*tab);
     if(x>=term_width*char_width){
       x=0;
-      y+=char_height;
+      y++;
     }
     term.setCursor(x, y);
     term.draw_cursor();
   }
 
   protected void carriage_return(){
-    term.draw_cursor();
-    x=0;
-    term.setCursor(x, y);
-    term.draw_cursor();
+    x=1;
+    
   }
 
   protected void cursor_left(){
-    term.draw_cursor();
-    x-=char_width;
-    if(x<0){
-      y-=char_height;
-      x=term_width*char_width-char_width;
-    }
-    term.setCursor(x, y);
-    term.draw_cursor();
+	  parm_left_cursor(1);
   }
 
   protected void cursor_down(){
-    term.draw_cursor();
-    y+=char_height;
-    term.setCursor(x, y);
-    term.draw_cursor();
-
-    check_region();
+	  parm_down_cursor(1);
   }
 
   private byte[] b2=new byte[2];
