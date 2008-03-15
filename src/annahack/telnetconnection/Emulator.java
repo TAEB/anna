@@ -279,26 +279,26 @@ public abstract class Emulator
 
 	protected void clr_eol()
 	{
-		for (int i = x - 1; i < term_width; i++)
+		for (int j = y - 1; j < term_width; j++)
 		{
-			screen[i][y] = null;
+			screen[x][j] = null;
 		}
 	}
 
 	protected void clr_bol()
 	{
-		for (int i = 0; i < x; i++)
+		for (int j = 0; j < y; j++)
 		{
-			screen[i][y] = null;
+			screen[x][j] = null;
 		}
 	}
 
 	protected void clr_eos()
 	{
 		clr_eol();
-		for (int j = y; j < term_height; j++)
+		for (int i = x; i < term_height; i++)
 		{
-			screen[j] = new TerminalSymbol[term_width];
+			screen[i] = new TerminalSymbol[term_width];
 		}
 	}
 
@@ -393,12 +393,12 @@ public abstract class Emulator
 
 	private void check_region()
 	{
-		if (x >= term_width)
+		if (y >= term_width)
 		{
 			// System.out.println("!! "+new
 			// Character((char)b)+"["+Integer.toHexString(b&0xff)+"]");
-			x = 1;
-			y ++;
+			y = 1;
+			x ++;
 			// System.out.println("@1: ry="+ry);
 		}
 
