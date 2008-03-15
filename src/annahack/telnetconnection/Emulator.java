@@ -387,7 +387,6 @@ public abstract class Emulator
 			h = char_height;
 		}
 		term.redraw(rx, ry - char_height, w, h);
-		term.setCursor(x, y);
 		// no draw cursor!();
 	}
 
@@ -405,14 +404,13 @@ public abstract class Emulator
 		if (x > region_x2)
 		{
 			x=region_x2;
-			// no draw cursor!();
+			
 			term.scroll_area(0, region_x1 * char_height, term_width
 					* char_width, (region_x2 - region_x1) * char_height, 0,
 					-char_height);
 			term.clear_area(0, y - char_height, term_width * char_width, y);
 			term.redraw(0, 0, term_width * char_width, region_x2 * char_height);
-			term.setCursor(x, y);
-			// no draw cursor!();
+			
 		}
 	}
 }
