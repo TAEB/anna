@@ -2,6 +2,10 @@ package annahack.telnetconnection;
 
 public class TerminalSymbol
 {
+	public TerminalSymbol()
+	{
+		this((byte)' ');	
+	}
 	
 	public TerminalSymbol(byte c)
 	{
