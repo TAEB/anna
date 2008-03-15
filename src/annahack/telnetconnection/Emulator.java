@@ -401,16 +401,14 @@ public abstract class Emulator
 			// System.out.println("@1: ry="+ry);
 		}
 
-		if (x > region_x2)
+		while (x > region_x2)
 		{
-			x=region_x2;
-			
-			term.scroll_area(0, region_x1 * char_height, term_width
-					* char_width, (region_x2 - region_x1) * char_height, 0,
-					-char_height);
-			term.clear_area(0, y - char_height, term_width * char_width, y);
-			term.redraw(0, 0, term_width * char_width, region_x2 * char_height);
-			
+			x--;
+			for (int i=region_x1; i<region_x2; i++)
+			{
+				screen[i-1]=screen[i];
+			}
+			screen [region_x2-1]=new TerminalSymbol[term_width];
 		}
 	}
 }
