@@ -1,9 +1,7 @@
 package annahack.tests;
 
 import org.apache.commons.net.telnet.*;
-
-import annahack.telnetconnection.ApacheBasedTelnetInterface;
-import annahack.telnetconnection.TelnetInterface;
+import annahack.telnetconnection.*;
 
 import java.io.IOException;
 import java.io.BufferedReader;
