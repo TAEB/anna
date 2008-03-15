@@ -368,19 +368,12 @@ public abstract class Emulator
 				// foo));
 				for (int c=bufs-asc; c<bufs; c++)
 				{
-					screen[x][y]=new TerminalSymbol(buf[c],
-							(byte)(fground+(light_colors?8:0)), bground);
-					y++;
-					check_region();
+					writeCharacter(buf[c]);
 				}
-				term.drawBytes(buf, bufs - asc, asc, x, y);
 			} else
 			{
 				asc = 1;
-				term.clear_area(x, y - char_height, x + asc * char_width, y);
-				b1[0] = getChar();
-				term.drawBytes(b1, 0, asc, x, y);
-				// System.out.print("["+Integer.toHexString(bar[0]&0xff)+"]");
+				writeCharacter(getChar());
 			}
 			y += asc;
 		}
@@ -412,6 +405,7 @@ public abstract class Emulator
 	{
 		screen[x][y]=new TerminalSymbol(c,
 				(byte)(fground+(light_colors?8:0)), bground);
+		y++;
 		check_region();
 	}
 }
