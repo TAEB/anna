@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.InputStream;
 
-public class ApacheBasedTelnetInterface implements TelnetInterface
+public class ApacheBasedTelnetInterface extends EmulatorVT100 implements TelnetInterface
 {
 	private TelnetClient tc;
 	private OutputStream outstr;
@@ -69,10 +69,10 @@ public class ApacheBasedTelnetInterface implements TelnetInterface
 	}
 
 	@Override
-	public char[] peekLine(int x) throws IOException
+	public byte[] peekLine(int x) throws IOException
 	{
 		update();
-		char[] peek=new char[80];
+		byte[] peek=new char[80];
 		for (int y=0; y<80; y++)
 		{
 			peek[y]=screen[x][y].getChar();
