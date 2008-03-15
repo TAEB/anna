@@ -71,8 +71,8 @@ public abstract class Emulator
 	{
 		term_width = screen[0].length;
 		term_height = screen.length;
-		region_y1 = 1;
-		region_y2 = term_height;
+		region_x1 = 1;
+		region_x2 = term_height;
 	}
 
 	byte[] buf = new byte[1024];
@@ -153,29 +153,29 @@ public abstract class Emulator
 	protected int x_ = 0;
 	protected int y_ = 0;
 
-	private int region_y2;
-	private int region_y1;
+	private int region_x2;
+	private int region_x1;
 
 	protected int tab = 8;
 
 	// Reverse scroll
 	protected void scroll_reverse()
 	{
-		for (int i = region_y2; i > region_y1; i--)
+		for (int i = region_x2; i > region_x1; i--)
 		{
 			screen[i - 1] = screen[i - 2];
 		}
-		screen[region_y1 - 1] = new TerminalSymbol[term_width];
+		screen[region_x1 - 1] = new TerminalSymbol[term_width];
 	}
 
 	// Normal scroll one line
 	protected void scroll_forward()
 	{
-		for (int i = region_y1; i < region_y2; i++)
+		for (int i = region_x1; i < region_x2; i++)
 		{
 			screen[i - 1] = screen[i];
 		}
-		screen[region_y2 - 1] = new TerminalSymbol[term_width];
+		screen[region_x2 - 1] = new TerminalSymbol[term_width];
 	}
 
 	// Save cursor position
@@ -247,8 +247,8 @@ public abstract class Emulator
 
 	protected void change_scroll_region(int y1, int y2)
 	{
-		region_y1 = y1;
-		region_y2 = y2;
+		region_x1 = y1;
+		region_x2 = y2;
 	}
 
 	protected void cursor_address(int r, int c)
@@ -402,18 +402,15 @@ public abstract class Emulator
 			// System.out.println("@1: ry="+ry);
 		}
 
-		if (y > region_y2 * char_height)
+		if (x > region_x2)
 		{
-			while (y > region_y2 * char_height)
-			{
-				y -= char_height;
-			}
+			x=region_x2;
 			// no draw cursor!();
-			term.scroll_area(0, region_y1 * char_height, term_width
-					* char_width, (region_y2 - region_y1) * char_height, 0,
+			term.scroll_area(0, region_x1 * char_height, term_width
+					* char_width, (region_x2 - region_x1) * char_height, 0,
 					-char_height);
 			term.clear_area(0, y - char_height, term_width * char_width, y);
-			term.redraw(0, 0, term_width * char_width, region_y2 * char_height);
+			term.redraw(0, 0, term_width * char_width, region_x2 * char_height);
 			term.setCursor(x, y);
 			// no draw cursor!();
 		}
