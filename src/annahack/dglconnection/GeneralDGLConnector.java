@@ -1,4 +1,4 @@
-package dglconnection;
+package annahack.dglconnection;
 
 import java.net.Socket;
 

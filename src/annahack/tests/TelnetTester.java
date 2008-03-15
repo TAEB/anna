@@ -1,4 +1,4 @@
-package tests;
+package annahack.tests;
 
 import java.io.IOException;
 

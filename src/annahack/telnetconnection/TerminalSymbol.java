@@ -1,4 +1,4 @@
-package telnetconnection;
+package annahack.telnetconnection;
 
 import java.awt.Color;
 

@@ -1,4 +1,4 @@
-package telnetconnection;
+package annahack.telnetconnection;
 
 public class ConsoleInstruction
 {

@@ -1,4 +1,4 @@
-package telnetconnection;
+package annahack.telnetconnection;
 
 import org.apache.commons.net.telnet.EchoOptionHandler;
 import org.apache.commons.net.telnet.SuppressGAOptionHandler;

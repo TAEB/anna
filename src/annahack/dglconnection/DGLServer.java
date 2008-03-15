@@ -1,4 +1,4 @@
-package dglconnection;
+package annahack.dglconnection;
 
 public interface DGLServer
 {
