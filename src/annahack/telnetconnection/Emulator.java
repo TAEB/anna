@@ -2,7 +2,6 @@
 
 package annahack.telnetconnection;
 
-import java.awt.Color;
 import java.io.InputStream;
 import java.io.IOException;
 import com.jcraft.jcterm.JCTermAWT;
@@ -330,7 +329,6 @@ public abstract class Emulator
 	}
 
 	private byte[] b2 = new byte[2];
-	private byte[] b1 = new byte[1];
 
 	protected void draw_text() throws java.io.IOException
 	{
