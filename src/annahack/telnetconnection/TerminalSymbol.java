@@ -27,11 +27,11 @@ public class TerminalSymbol
 	{
 		return c;
 	}
-	Color getFg()
+	byte getFg()
 	{
 		return fg;
 	}
-	Color getBg()
+	byte getBg()
 	{
 		return bg;
 	}
