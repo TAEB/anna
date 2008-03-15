@@ -170,18 +170,17 @@ public abstract class Emulator{
 
   // Enable alternate character set
   protected void ena_acs(){
-    // TODO
-    //System.out.println("enable alterate char set");
+    //I don't think nethack uses this
+	  throw new RuntimeException("ena_acs not supported");
   }
 
   protected void exit_alt_charset_mode(){
-    // TODO
-    //System.out.println("end alternate character set (P)");
+    // does nothing since ena_acs not supported
   }
 
   protected void enter_alt_charset_mode(){
-    // TODO
-    //System.out.println("start alternate character set (P)");
+    //I don't think nethack uses this
+	  throw new RuntimeException("alt charset mode not supported");
   }
 
   protected void reset_2string(){
@@ -200,19 +199,22 @@ public abstract class Emulator{
   }
 
   protected void exit_underline_mode(){
-    // TODO
+    // does nothing, not supported
   }
 
   protected void enter_bold_mode(){
-    term.setBold();
+    //I don't think nethack uses this
+	  throw new RuntimeException("Bold mode not supported");
   }
 
   protected void enter_underline_mode(){
-    term.setUnderline();
+    //I don't think nethack uses this
+	  throw new RuntimeException("Underline mode not supported");
   }
 
   protected void enter_reverse_mode(){
-    term.setReverse();
+    //I think I'll have to pass on this one
+	  throw new RuntimeException("Reverse mode not supported");
   }
 
   protected void change_scroll_region(int y1, int y2){
@@ -221,12 +223,8 @@ public abstract class Emulator{
   }
 
   protected void cursor_address(int r, int c){
-    term.draw_cursor();
-    x=(c-1)*char_width;
-    y=r*char_height;
-    //System.out.println("setCourosr: "+x+" "+y);
-    term.setCursor(x, y);
-    term.draw_cursor();
+    y=c;
+    x=r;
   }
 
   protected void parm_up_cursor(int lines){
