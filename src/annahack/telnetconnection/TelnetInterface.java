@@ -15,4 +15,6 @@ public interface TelnetInterface
 	
 	public int getcursorx();
 	public int getcursory();
+	
+	public boolean waiting() throws InterruptedException, IOException;
 }

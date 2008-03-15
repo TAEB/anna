@@ -75,6 +75,11 @@ public class ApacheBasedTelnetInterface extends EmulatorVT100 implements TelnetI
         outstr.flush();
 	}
 	
+	public boolean waiting() throws InterruptedException, IOException
+	{
+		return tc.sendAYT(1000);
+	}
+	
 	public void startUpdating()
 	{
 		updater.notify();
