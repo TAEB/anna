@@ -5,14 +5,13 @@ package annahack.telnetconnection;
 import java.io.InputStream;
 import java.io.IOException;
 import com.jcraft.jcterm.JCTermAWT;
-import java.awt.Color;
 
 public abstract class Emulator
 {
 
 	protected TerminalSymbol[][] screen;
-	protected Color fground;
-	protected Color bground;
+	protected byte fground;
+	protected byte bground;
 
 	// Added methods from JCTermAWT
 	public Object getColor(int index)
@@ -356,9 +355,12 @@ public abstract class Emulator
 			b2[0] = b;
 			b2[1] = getChar();
 			
-			term.drawString(new String(b2, 0, 2, "EUC-JP"), x, y);
-			x += char_width;
-			x += char_width;
+			//I don't know why this does this, but it's what the other one did
+			screen[x][y]=new TerminalSymbol(b2[0]);
+			x++;
+			screen[x][y]=new TerminalSymbol(b2[1]);
+			
+			x += 2;
 			w = char_width * 2;
 			h = char_height;
 		} else
