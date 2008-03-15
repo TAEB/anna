@@ -15,7 +15,7 @@ public class ApacheBasedTelnetInterface extends EmulatorVT100 implements TelnetI
 	public ApacheBasedTelnetInterface(TelnetClient tc)
 		throws SocketException, InvalidTelnetOptionException, IOException
 	{
-		super(new TerminalSymbol[80][24], tc.getInputStream());
+		super(new TerminalSymbol[24][80], tc.getInputStream());
 		
 		for (int i=0; i<24; i++)
 			for (int j=0; j<80; j++)
