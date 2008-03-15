@@ -5,9 +5,7 @@ import org.apache.commons.net.telnet.SuppressGAOptionHandler;
 import org.apache.commons.net.telnet.TelnetClient;
 import org.apache.commons.net.telnet.TerminalTypeOptionHandler;
 import java.net.SocketException;
-
 import org.apache.commons.net.telnet.InvalidTelnetOptionException;
-
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.InputStream;
@@ -16,29 +14,18 @@ public class ApacheBasedTelnetInterface extends EmulatorVT100 implements TelnetI
 {
 	private TelnetClient tc;
 	private OutputStream outstr;
-	private InputStream instr;
+	Thread updater;
 	
-	public ApacheBasedTelnetInterface(String server)
+	public ApacheBasedTelnetInterface(TelnetClient tc)
 		throws SocketException, InvalidTelnetOptionException, IOException
 	{
-		tc = new TelnetClient();
-
-        TerminalTypeOptionHandler ttopt = new TerminalTypeOptionHandler("VT100", false, false, true, false);
-        EchoOptionHandler echoopt = new EchoOptionHandler(true, false, true, false);
-        SuppressGAOptionHandler gaopt = new SuppressGAOptionHandler(true, true, true, true);
-
-        tc.addOptionHandler(ttopt);
-        tc.addOptionHandler(echoopt);
-        tc.addOptionHandler(gaopt);
-        
-		tc.connect(server, 23);
+		super(new TerminalSymbol[80][24], tc.getInputStream());
+		this.tc=tc;
+		outstr=this.tc.getOutputStream();
 		
-		outstr = tc.getOutputStream();
-		instr = tc.getInputStream();
+		updater=new Thread(this);
+		updater.run();
 	}
-	
-	private TerminalSymbol[][] screen=new TerminalSymbol[80][24];
-	private int cursorx, cursory;
 	
 	@Override
 	public int getdimx()
@@ -53,26 +40,24 @@ public class ApacheBasedTelnetInterface extends EmulatorVT100 implements TelnetI
 	@Override
 	public int getcursorx()
 	{
-		return cursorx;
+		return x;
 	}
 	@Override
 	public int getcursory()
 	{
-		return cursory;
+		return y;
 	}
 
 	@Override
 	public TerminalSymbol peek(int x, int y) throws IOException
 	{
-		update();
 		return screen[x][y];
 	}
 
 	@Override
 	public byte[] peekLine(int x) throws IOException
 	{
-		update();
-		byte[] peek=new char[80];
+		byte[] peek=new byte[80];
 		for (int y=0; y<80; y++)
 		{
 			peek[y]=screen[x][y].getChar();
@@ -93,20 +78,14 @@ public class ApacheBasedTelnetInterface extends EmulatorVT100 implements TelnetI
         outstr.write(c);
         outstr.flush();
 	}
-
-	@Override
-	public void processData(String s)
+	
+	public void startUpdating()
 	{
-		// TODO
+		updater.notify();
 	}
 	
-	private void update() throws IOException
+	public void stopUpdating()
 	{
-		while (instr.available()>0)
-		{
-			
-		}
-		// TODO: vt100 stuff goes here!
+		updater.interrupt();
 	}
-
 }
