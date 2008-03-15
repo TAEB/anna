@@ -191,11 +191,12 @@ public abstract class Emulator{
   protected void exit_attribute_mode(){
     // TODO
     //System.out.println("turn off all attributes");
-    term.resetAllAttributes();
+    //term.resetAllAttributes();
   }
 
   protected void exit_standout_mode(){
-    term.resetAllAttributes();
+	  // TODO
+    //term.resetAllAttributes();
   }
 
   protected void exit_underline_mode(){
@@ -258,12 +259,10 @@ public abstract class Emulator{
   }
 
   protected void clr_eos(){
-    term.draw_cursor();
     term.clear_area(x, y-char_height, term_width*char_width, term_height
         *char_height);
     term.redraw(x, y-char_height, term_width*char_width-x, term_height
         *char_height-y+char_height);
-    term.draw_cursor();
   }
 
   protected void bell(){
