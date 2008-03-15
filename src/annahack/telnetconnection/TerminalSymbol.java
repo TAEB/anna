@@ -1,28 +1,28 @@
 package annahack.telnetconnection;
 
-import java.awt.Color;
-
 public class TerminalSymbol
 {
+	
 	public TerminalSymbol(char c)
 	{
 		this.c=c;
-		this.fg=Color.GRAY;
-		this.bg=Color.BLACK;
+		this.fg=7;
+		this.bg=0;
 	}
-	public TerminalSymbol(char c, Color fg)
+	public TerminalSymbol(char c, byte fg)
 	{
 		this(c);
 		this.fg=fg;
 	}
-	public TerminalSymbol(char c, Color fg, Color bg)
+	public TerminalSymbol(char c, byte fg, byte bg)
 	{
 		this(c, fg);
 		this.bg=bg;
 	}
+	//ANSI codes are 0-7, +8 for bright
+	private byte fg;	//character color
+	private byte bg;	//background color
 	private char c;
-	private Color fg;	//character color
-	private Color bg;	//background color
 	char getChar()
 	{
 		return c;
