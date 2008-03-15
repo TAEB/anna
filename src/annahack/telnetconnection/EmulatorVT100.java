@@ -276,9 +276,9 @@ public class EmulatorVT100 extends Emulator
 
 						for (int i = 0; i <= intargi; i++)
 						{
-							Object fg = null;
-							Object bg = null;
-							Object tmp = null;
+							byte fg = -1;
+							byte bg = -1;
+							byte tmp = -1;
 
 							switch (intarg[i])
 							{
@@ -307,8 +307,8 @@ public class EmulatorVT100 extends Emulator
 							case 35:
 							case 36:
 							case 37:
-								tmp = getColor(intarg[i] - 30);
-								if (tmp != null)
+								tmp = getColor((byte)(intarg[i] - 30));
+								if (tmp != -1)
 									fg = tmp;
 								break;
 							case 40:
@@ -319,17 +319,17 @@ public class EmulatorVT100 extends Emulator
 							case 45:
 							case 46:
 							case 47:
-								tmp = getColor(intarg[i] - 40);
-								if (tmp != null)
+								tmp = getColor((byte)(intarg[i] - 40));
+								if (tmp != -1)
 									bg = tmp;
 								break;
 							default:
 								break;
 							}
-							if (fg != null)
-								fground = JCTermAWT.toColor(fg);
-							if (bg != null)
-								bground = JCTermAWT.toColor(fg);
+							if (fg != -1)
+								fground = fg;
+							if (bg != -1)
+								bground = bg;
 						}
 						// System.out.println("fg: "+fg+" bg: "+bg);
 						continue;
