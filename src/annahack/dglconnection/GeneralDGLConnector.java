@@ -1,6 +1,5 @@
 package annahack.dglconnection;
 
-import java.net.Socket;
 import org.apache.commons.net.telnet.EchoOptionHandler;
 import org.apache.commons.net.telnet.SuppressGAOptionHandler;
 import org.apache.commons.net.telnet.TelnetClient;
