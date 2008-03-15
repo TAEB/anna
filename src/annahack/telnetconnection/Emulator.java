@@ -2,24 +2,24 @@
 
 package annahack.telnetconnection;
 
+import java.awt.Color;
 import java.io.InputStream;
 import java.io.IOException;
 import com.jcraft.jcterm.JCTermAWT;
 
 public abstract class Emulator
 {
-
 	protected TerminalSymbol[][] screen;
 	protected byte fground;
 	protected byte bground;
 
 	// Added methods from JCTermAWT
-	public Object getColor(int index)
+	public byte getColor(byte index)
 	{
 		if (JCTermAWT.colors == null || index < 0
 				|| JCTermAWT.colors.length <= index)
-			return null;
-		return JCTermAWT.colors[index];
+			return -1;
+		return index;
 	}
 
 	// End of added methods
