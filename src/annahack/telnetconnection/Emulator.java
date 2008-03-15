@@ -353,9 +353,9 @@ public abstract class Emulator
 		// Character((char)b)+"["+Integer.toHexString(b&0xff)+"]");
 		if ((b & 0x80) != 0)
 		{
-			term.clear_area(x, y - char_height, x + char_width * 2, y);
 			b2[0] = b;
 			b2[1] = getChar();
+			
 			term.drawString(new String(b2, 0, 2, "EUC-JP"), x, y);
 			x += char_width;
 			x += char_width;
@@ -393,12 +393,12 @@ public abstract class Emulator
 
 	private void check_region()
 	{
-		if (x >= term_width * char_width)
+		if (x >= term_width)
 		{
 			// System.out.println("!! "+new
 			// Character((char)b)+"["+Integer.toHexString(b&0xff)+"]");
-			x = 0;
-			y += char_height;
+			x = 1;
+			y ++;
 			// System.out.println("@1: ry="+ry);
 		}
 
