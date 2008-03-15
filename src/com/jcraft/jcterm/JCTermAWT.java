@@ -89,7 +89,8 @@ static String COPYRIGHT=
 
   private Splash splash=null;
 
-  private final Object[] colors={Color.black, Color.red, Color.green, 
+  //why would a constant be private or instance?
+  public static final Object[] colors={Color.black, Color.red, Color.green, 
 				 Color.yellow,Color.blue,
 				 Color.magenta, Color.cyan, Color.white};
 
@@ -516,7 +517,8 @@ static String COPYRIGHT=
   }
   */
 
-  private java.awt.Color toColor(Object o){
+  //made public static
+  public static java.awt.Color toColor(Object o){
     if(o instanceof String){
       return java.awt.Color.getColor((String)o);
     }
@@ -550,10 +552,10 @@ static String COPYRIGHT=
   }
 
   public Object getColor(int index){
-    if(colors==null || index<0 || colors.length<=index)
-      return null;
-    return colors[index];
-  }
+	    if(colors==null || index<0 || colors.length<=index)
+	      return null;
+	    return colors[index];
+	  }
   public void setBold(){
     bold=true;
   }

@@ -4,13 +4,28 @@ package annahack.telnetconnection;
 
 import java.io.InputStream;
 import java.io.IOException;
+import com.jcraft.jcterm.JCTermAWT;
+import java.awt.Color;
 
 public abstract class Emulator{
-  Term term=null;
+	
+  protected TerminalSymbol[][] screen;
+  protected Color fground;
+  protected Color bground;
+  
+  //Added methods from JCTermAWT
+  public Object getColor(int index){
+	    if(JCTermAWT.colors==null || index<0 || JCTermAWT.colors.length<=index)
+	      return null;
+	    return JCTermAWT.colors[index];
+	  }
+  //End of added methods
+  
+  
   InputStream in=null;
 
-  public Emulator(Term term, InputStream in){
-    this.term=term;
+  public Emulator(TerminalSymbol[][] screen, InputStream in){
+    this.screen=screen;
     this.in=in;
   }
 
@@ -49,10 +64,8 @@ public abstract class Emulator{
   public abstract byte[] getCodeTAB();
 
   public void reset(){
-    term_width=term.getColumnCount();
-    term_height=term.getRowCount();
-    char_width=term.getCharWidth();
-    char_height=term.getCharHeight();
+    term_width=screen[0].length;
+    term_height=screen.length;
     region_y1=1;
     region_y2=term_height;
   }
@@ -123,9 +136,8 @@ public abstract class Emulator{
 
   protected int x=0;
   protected int y=0;
-
-  protected int char_width;
-  protected int char_height;
+  protected int x_=0;
+  protected int y_=0;
 
   private int region_y2;
   private int region_y1;
@@ -134,33 +146,26 @@ public abstract class Emulator{
 
   // Reverse scroll
   protected void scroll_reverse(){
-    term.draw_cursor();
-    term.scroll_area(0, (region_y1-1)*char_height, term_width*char_width,
-        (region_y2-region_y1)*char_height, 0, char_height);
-    term.clear_area(x, y-char_height, term_width*char_width, y);
-    term.redraw(0, 0, term_width*char_width, term_height*char_height
-        -char_height);
-    //term.setCursor(x, y);
-    term.draw_cursor();
+	  for (int i=region_y2; i>region_y1; i--)
+	  {
+		  screen[i-1]=screen[i-2];
+	  }
+	  screen[region_y1-1]=new TerminalSymbol[term_width];
   }
 
   // Normal scroll one line
   protected void scroll_forward(){
-    term.draw_cursor();
-    term.scroll_area(0, (region_y1-1)*char_height, term_width*char_width,
-        (region_y2-region_y1+1)*char_height, 0, -char_height);
-    term.clear_area(0, region_y2*char_height-char_height,
-        term_width*char_width, region_y2*char_height);
-    term.redraw(0, (region_y1-1)*char_height, term_width*char_width, (region_y2
-        -region_y1+1)
-        *char_height);
-    term.draw_cursor();
+	  for (int i=region_y1; i<region_y2; i++)
+	  {
+		  screen[i-1]=screen[i];
+	  }
+	  screen[region_y2-1]=new TerminalSymbol[term_width];
   }
 
   // Save cursor position
   protected void save_cursor(){
-    // TODO
-    //System.out.println("save current cursor position");
+    x_=x;
+    y_=y;
   }
 
   // Enable alternate character set
@@ -278,7 +283,7 @@ public abstract class Emulator{
   }
 
   protected void bell(){
-    term.beep();
+    //like hell
   }
 
   protected void tab(){
