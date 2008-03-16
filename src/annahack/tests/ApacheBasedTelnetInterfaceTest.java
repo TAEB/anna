@@ -27,7 +27,7 @@ public class ApacheBasedTelnetInterfaceTest
         tc.addOptionHandler(echoopt);
         tc.addOptionHandler(gaopt);
         
-		tc.connect("nethack.kraln.com", 23);
+		tc.connect("slackwell.com", 23);
 		
 		TelnetInterface connection=new ApacheBasedTelnetInterface(tc);
 		
@@ -43,7 +43,10 @@ public class ApacheBasedTelnetInterfaceTest
 			for (int i=0; i<24; i++)
 				System.out.println(new String(connection.peekLine(i)));
 			String input=in.readLine();
-			connection.send(input.getBytes());
+			if (input.startsWith("\\n"))
+				connection.send('\n');
+			else
+				connection.send(input.getBytes());
 		}
 	}
 
