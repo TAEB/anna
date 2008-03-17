@@ -35,19 +35,28 @@ public class ApacheBasedTelnetInterfaceTest
 		
 		while (true)
 		{
+			Thread.sleep(1000);
 			while (!connection.waiting())
 			{
 				System.out.println("not waiting...");
 				Thread.sleep(100);
 			}
 			for (int i=0; i<24; i++)
-				System.out.println(new String(connection.peekLine(i)));
+				System.out.println(new String(bytesToChars(connection.peekLine(i))));
 			String input=in.readLine();
 			if (input.startsWith("\\n"))
 				connection.send('\n');
 			else
 				connection.send(input.getBytes());
 		}
+	}
+	
+	private static char[] bytesToChars(byte[] in)
+	{
+		char[] out=new char[in.length];
+		for (int i=0; i<in.length; i++)
+			out[i]=(char)in[i];
+		return out;
 	}
 
 }

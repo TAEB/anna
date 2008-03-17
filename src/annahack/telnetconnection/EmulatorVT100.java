@@ -107,8 +107,11 @@ public class EmulatorVT100 extends Emulator implements Runnable
 				 */
 				if (b == 0)
 				{
+					System.out.println("null recieved");
 					continue;
 				}
+				
+				System.out.println("char recieved");
 
 				if (b == 0x1b)
 				{
@@ -539,7 +542,9 @@ public class EmulatorVT100 extends Emulator implements Runnable
 			}
 		} catch (Exception e)
 		{
+			e.printStackTrace();
 		}
+		System.out.println("Telnet reader thread died!");
 	}
 
 	private static byte[] ENTER =

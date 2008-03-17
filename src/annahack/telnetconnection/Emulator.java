@@ -188,8 +188,7 @@ public abstract class Emulator
 	// Enable alternate character set
 	protected void ena_acs()
 	{
-		// I don't think nethack uses this
-		throw new RuntimeException("ena_acs not supported");
+		// I don't know what this does, so do nothing
 	}
 
 	protected void exit_alt_charset_mode()
