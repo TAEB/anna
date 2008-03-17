@@ -10,24 +10,12 @@ public class VT100Parser implements Runnable
 	private InputStream consoleData;
 	private Thread parsebot;
 	private boolean running;
-	private Queue<ConsoleInstruction> instrbuf;
 	
 	public VT100Parser(InputStream consoleData)
 	{
-		instrbuf=new LinkedList<ConsoleInstruction>();
 		this.consoleData=consoleData;
 		parsebot=new Thread(this);
 		parsebot.run();
-	}
-	
-	public boolean instructionWaiting()
-	{
-		return instrbuf.isEmpty();
-	}
-	
-	public ConsoleInstruction nextInstruction()
-	{
-		return instrbuf.poll();
 	}
 	
 	public void update()
