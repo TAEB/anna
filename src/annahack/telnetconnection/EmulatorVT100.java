@@ -110,8 +110,6 @@ public class EmulatorVT100 extends Emulator implements Runnable
 					System.out.println("null recieved");
 					continue;
 				}
-				
-				System.out.println("char recieved");
 
 				if (b == 0x1b)
 				{
@@ -206,7 +204,7 @@ public class EmulatorVT100 extends Emulator implements Runnable
 
 					if (b != '[')
 					{
-						System.out.print("@11: " + new Character((char) b)
+						System.err.print("@11: " + new Character((char) b)
 								+ "[" + Integer.toHexString(b & 0xff) + "]");
 						pushChar(b);
 						continue;
@@ -481,7 +479,7 @@ public class EmulatorVT100 extends Emulator implements Runnable
 						continue;
 					}
 
-					System.out.println("unknown "
+					System.err.println("unknown "
 							+ Integer.toHexString(b & 0xff) + " "
 							+ new Character((char) b) + ", " + intarg[0] + ", "
 							+ intarg[1] + ", " + intarg[2] + ",intargi="
@@ -544,7 +542,7 @@ public class EmulatorVT100 extends Emulator implements Runnable
 		{
 			e.printStackTrace();
 		}
-		System.out.println("Telnet reader thread died!");
+		System.err.println("Telnet reader thread died!");
 	}
 
 	private static byte[] ENTER =
