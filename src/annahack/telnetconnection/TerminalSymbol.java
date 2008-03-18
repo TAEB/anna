@@ -32,19 +32,19 @@ public class TerminalSymbol
 	private byte bg;	//background color
 	private byte c;
 	private boolean inverted;
-	byte getChar()
+	public byte getChar()
 	{
 		return c;
 	}
-	byte getFg()
+	public byte getFg()
 	{
 		return fg;
 	}
-	byte getBg()
+	public byte getBg()
 	{
 		return bg;
 	}
-	boolean inverted()
+	public boolean inverted()
 	{
 		return inverted;
 	}
