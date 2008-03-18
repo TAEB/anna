@@ -8,6 +8,8 @@ import com.jcraft.jcterm.JCTermAWT;
 
 public abstract class Emulator
 {
+	protected long lastUpdate=System.currentTimeMillis();
+	
 	protected TerminalSymbol[][] screen;
 	protected byte fground=7;
 	protected byte bground=0;
