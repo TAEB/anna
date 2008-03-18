@@ -6,6 +6,7 @@ import java.io.InputStream;
 
 public class EmulatorVT100 extends Emulator implements Runnable
 {
+	protected long lastUpdate=System.currentTimeMillis();
 
 	public EmulatorVT100(TerminalSymbol[][] screen, InputStream in)
 	{
