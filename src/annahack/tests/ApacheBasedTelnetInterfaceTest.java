@@ -42,7 +42,12 @@ public class ApacheBasedTelnetInterfaceTest
 				Thread.sleep(100);
 			}
 			for (int i=0; i<24; i++)
-				System.out.println(new String(bytesToChars(connection.peekLine(i))));
+			{
+				for (int j=0; j<80; j++)
+					System.out.print((char)(connection.peek(i, j).getChar()));
+				System.out.println();
+			}
+			
 			String input=in.readLine();
 			if (input.startsWith("\\n"))
 				connection.send('\n');
