@@ -168,7 +168,7 @@ public abstract class Emulator
 		{
 			screen[i - 1] = screen[i - 2];
 		}
-		screen[region_x1 - 1] = new TerminalSymbol[term_width];
+		clearRow(region_x1 - 1);
 		lastUpdate=System.currentTimeMillis();
 	}
 
@@ -179,7 +179,7 @@ public abstract class Emulator
 		{
 			screen[i - 1] = screen[i];
 		}
-		screen[region_x2 - 1] = new TerminalSymbol[term_width];
+		clearRow(region_x2);
 		lastUpdate=System.currentTimeMillis();
 	}
 
@@ -301,7 +301,7 @@ public abstract class Emulator
 		clr_eol();
 		for (int i = x; i < term_height; i++)
 		{
-			screen[i] = new TerminalSymbol[term_width];
+			clearRow(i);
 		}
 		lastUpdate=System.currentTimeMillis();
 	}
@@ -394,7 +394,7 @@ public abstract class Emulator
 			{
 				screen[i-1]=screen[i];
 			}
-			screen [region_x2-1]=new TerminalSymbol[term_width];
+			clearRow(region_x2-1);
 		}
 		lastUpdate=System.currentTimeMillis();
 	}
@@ -406,5 +406,12 @@ public abstract class Emulator
 		y++;
 		check_region();
 		lastUpdate=System.currentTimeMillis();
+	}
+	
+	protected void clearRow(int row)
+	{
+		screen[x]=new TerminalSymbol[term_width];
+		for (int j=0; j<term_width; j++)
+			screen[x][j]=new TerminalSymbol();
 	}
 }
