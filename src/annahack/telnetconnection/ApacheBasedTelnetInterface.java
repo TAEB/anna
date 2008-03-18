@@ -73,7 +73,6 @@ public class ApacheBasedTelnetInterface extends EmulatorVT100 implements TelnetI
         outstr.flush();
 	}
 
-	//@Override
 	public void send(char c) throws IOException
 	{
         outstr.write(c);
@@ -93,5 +92,10 @@ public class ApacheBasedTelnetInterface extends EmulatorVT100 implements TelnetI
 	public void stopUpdating()
 	{
 		updater.interrupt();
+	}
+	
+	public long lastUpdate()
+	{
+		return System.currentTimeMillis()-lastUpdate;
 	}
 }
