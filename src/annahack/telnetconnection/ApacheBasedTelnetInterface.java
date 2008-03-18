@@ -25,7 +25,7 @@ public class ApacheBasedTelnetInterface extends EmulatorVT100 implements TelnetI
 		outstr=this.tc.getOutputStream();
 		
 		updater=new Thread(this);
-		updater.run();
+		updater.start();
 	}
 	
 	//@Override
