@@ -2,8 +2,6 @@ package annahack.telnetconnection;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Queue;
-import java.util.LinkedList;
 
 public class VT100Parser implements Runnable
 {
