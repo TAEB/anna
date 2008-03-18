@@ -36,7 +36,7 @@ public class ApacheBasedTelnetInterfaceTest
 		while (true)
 		{
 			Thread.sleep(1000);
-			while (!connection.waiting())
+			while (connection.timeSinceUpdate()<100)	//this is high
 			{
 				System.out.println("not waiting...");
 				Thread.sleep(100);
