@@ -8,7 +8,7 @@ import com.jcraft.jcterm.JCTermAWT;
 
 public abstract class Emulator
 {
-	protected long lastUpdate=System.currentTimeMillis();
+	protected long lastUpdate;
 	
 	protected TerminalSymbol[][] screen;
 	protected byte fground=7;
@@ -33,6 +33,7 @@ public abstract class Emulator
 	{
 		this.screen = screen;
 		this.in = in;
+		lastUpdate=System.currentTimeMillis();
 	}
 
 	public abstract void start();
@@ -168,6 +169,7 @@ public abstract class Emulator
 			screen[i - 1] = screen[i - 2];
 		}
 		screen[region_x1 - 1] = new TerminalSymbol[term_width];
+		lastUpdate=System.currentTimeMillis();
 	}
 
 	// Normal scroll one line
@@ -178,6 +180,7 @@ public abstract class Emulator
 			screen[i - 1] = screen[i];
 		}
 		screen[region_x2 - 1] = new TerminalSymbol[term_width];
+		lastUpdate=System.currentTimeMillis();
 	}
 
 	// Save cursor position
@@ -281,6 +284,7 @@ public abstract class Emulator
 		{
 			screen[x][j] = null;
 		}
+		lastUpdate=System.currentTimeMillis();
 	}
 
 	protected void clr_bol()
@@ -289,6 +293,7 @@ public abstract class Emulator
 		{
 			screen[x][j] = null;
 		}
+		lastUpdate=System.currentTimeMillis();
 	}
 
 	protected void clr_eos()
@@ -298,6 +303,7 @@ public abstract class Emulator
 		{
 			screen[i] = new TerminalSymbol[term_width];
 		}
+		lastUpdate=System.currentTimeMillis();
 	}
 
 	protected void bell()
@@ -390,6 +396,7 @@ public abstract class Emulator
 			}
 			screen [region_x2-1]=new TerminalSymbol[term_width];
 		}
+		lastUpdate=System.currentTimeMillis();
 	}
 	
 	private void writeCharacter(byte c)
@@ -398,5 +405,6 @@ public abstract class Emulator
 				(byte)(fground+(light_colors?8:0)), bground, reverse_colors);
 		y++;
 		check_region();
+		lastUpdate=System.currentTimeMillis();
 	}
 }
