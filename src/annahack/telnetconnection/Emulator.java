@@ -369,10 +369,8 @@ public abstract class Emulator
 				}
 			} else
 			{
-				asc = 1;
 				writeCharacter(getChar());
 			}
-			y += asc;
 		}
 	}
 
@@ -401,6 +399,7 @@ public abstract class Emulator
 	
 	private void writeCharacter(byte c)
 	{
+		check_region();
 		screen[x][y]=new TerminalSymbol(c,
 				(byte)(fground+(light_colors?8:0)), bground, reverse_colors);
 		y++;
@@ -410,8 +409,9 @@ public abstract class Emulator
 	
 	protected void clearRow(int row)
 	{
-		screen[x]=new TerminalSymbol[term_width];
+		System.out.println("Clearing row "+row);
+		screen[row]=new TerminalSymbol[term_width];
 		for (int j=0; j<term_width; j++)
-			screen[x][j]=new TerminalSymbol();
+			screen[row][j]=new TerminalSymbol();
 	}
 }
