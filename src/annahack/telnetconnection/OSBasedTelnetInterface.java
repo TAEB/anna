@@ -1,6 +1,5 @@
 package annahack.telnetconnection;
 
-import org.apache.commons.net.telnet.TelnetClient;
 import java.net.SocketException;
 import org.apache.commons.net.telnet.InvalidTelnetOptionException;
 import java.io.IOException;
@@ -8,21 +7,21 @@ import java.io.OutputStream;
 
 public class OSBasedTelnetInterface extends EmulatorVT100 implements TelnetInterface
 {
-	private TelnetClient tc;
 	private OutputStream outstr;
 	Thread updater;
+	Process telnet;
 	
-	public OSBasedTelnetInterface(TelnetClient tc)
+	public OSBasedTelnetInterface(Process telnet)
 		throws SocketException, InvalidTelnetOptionException, IOException
 	{
-		super(new TerminalSymbol[24][80], tc.getInputStream());
+		super(new TerminalSymbol[24][80], telnet.getInputStream());
 		
 		for (int i=0; i<24; i++)
 			for (int j=0; j<80; j++)
 				screen[i][j]=new TerminalSymbol();
 		
-		this.tc=tc;
-		outstr=this.tc.getOutputStream();
+		this.telnet=telnet;
+		outstr=this.telnet.getOutputStream();
 		
 		updater=new Thread(this);
 		updater.start();
@@ -81,7 +80,7 @@ public class OSBasedTelnetInterface extends EmulatorVT100 implements TelnetInter
 	
 	public boolean waiting() throws InterruptedException, IOException
 	{
-		return tc.sendAYT(1000);
+		return false;
 	}
 	
 	public void startUpdating()
