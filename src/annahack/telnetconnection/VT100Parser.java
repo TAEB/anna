@@ -11,8 +11,6 @@ public class VT100Parser implements Runnable
 	
 	public VT100Parser(InputStream consoleData)
 	{
-		if (true)
-			throw new RuntimeException("This class is not ready");
 		this.consoleData=consoleData;
 		parsebot=new Thread(this);
 		parsebot.run();
