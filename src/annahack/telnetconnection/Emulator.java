@@ -282,7 +282,7 @@ public abstract class Emulator
 	{
 		for (int j = y - 1; j < term_width; j++)
 		{
-			screen[x][j] = null;
+			screen[x-1][j] = null;
 		}
 		lastUpdate=System.currentTimeMillis();
 	}
