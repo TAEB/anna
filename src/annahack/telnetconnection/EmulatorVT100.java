@@ -29,7 +29,7 @@ public class EmulatorVT100 extends Emulator implements Runnable
 		int[] intarg = new int[10];
 		int intargi = 0;
 
-		x = 0;
+		x = 1;
 		y = 1;
 
 		byte b;
@@ -107,7 +107,6 @@ public class EmulatorVT100 extends Emulator implements Runnable
 				 */
 				if (b == 0)
 				{
-					System.out.println("null recieved");
 					continue;
 				}
 
