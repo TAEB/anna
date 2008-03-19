@@ -9,7 +9,7 @@ public class OSBasedTelnetInterface extends EmulatorVT100 implements TelnetInter
 {
 	private OutputStream outstr;
 	Thread updater;
-	Process telnet;
+	Process tc;
 	
 	public OSBasedTelnetInterface(Process telnet)
 		throws SocketException, InvalidTelnetOptionException, IOException
@@ -20,8 +20,8 @@ public class OSBasedTelnetInterface extends EmulatorVT100 implements TelnetInter
 			for (int j=0; j<80; j++)
 				screen[i][j]=new TerminalSymbol();
 		
-		this.telnet=telnet;
-		outstr=this.telnet.getOutputStream();
+		this.tc=telnet;
+		outstr=this.tc.getOutputStream();
 		
 		updater=new Thread(this);
 		updater.start();
