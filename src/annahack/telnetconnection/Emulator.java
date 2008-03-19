@@ -400,7 +400,7 @@ public abstract class Emulator
 	private void writeCharacter(byte c)
 	{
 		check_region();
-		screen[x][y]=new TerminalSymbol(c,
+		screen[x-1][y-1]=new TerminalSymbol(c,
 				(byte)(fground+(light_colors?8:0)), bground, reverse_colors);
 		y++;
 		check_region();
