@@ -13,7 +13,7 @@ public class KralnServer extends GeneralDGLConnector implements DGLServer
 	{
 		super();
 		spectating = false;
-		mainMenu=false;
+		mainMenu=true;
 		inGame=false;
 		loggedIn=false;
 	}
@@ -37,13 +37,11 @@ public class KralnServer extends GeneralDGLConnector implements DGLServer
 	}
 	public boolean mainMenu()
 	{
-		//TODO
-		return false;
+		return mainMenu;
 	}
 	public boolean inGame()
 	{
-		//TODO
-		return false;
+		return inGame;
 	}
 	public boolean login()
 	{
