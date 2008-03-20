@@ -13,6 +13,8 @@ public interface DGLServer
 	public void startGame();	// called when mainMenu(), presses p
 	
 	public boolean watch(String name); // watches a game
+	
+	
 		//return false if target is not playing
 		//(other errors should be an exception)
 }
