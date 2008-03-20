@@ -20,7 +20,19 @@ public class UniqueNameGetter
 			names=new ThreadedShuffler<String>(
 				namestmp.toArray(new String[namestmp.size()]));
 		}
-		
-		
+	}
+	
+	public String getName()
+	{
+		String s=makeSuffix(names.getShuffleCount());
+		return names.getNext()+s;
+	}
+	
+	private String makeSuffix(int i)
+	{
+		if (i==0)
+			return "";
+		else
+			return new Integer(i).toString();
 	}
 }
