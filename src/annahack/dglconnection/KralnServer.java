@@ -15,7 +15,7 @@ public class KralnServer extends GeneralDGLConnector implements DGLServer
 		spectating = false;
 		mainMenu=false;
 		inGame=false;
-		loggedIn=true;
+		loggedIn=false;
 	}
 	public String server()
 	{

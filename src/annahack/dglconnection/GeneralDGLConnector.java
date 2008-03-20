@@ -49,7 +49,6 @@ abstract class GeneralDGLConnector
 				connection.send('\n');
 				connection.send(p.getBytes());
 				connection.send('\n');
-				
 				return true;
 			}catch(IOException e)
 			{
