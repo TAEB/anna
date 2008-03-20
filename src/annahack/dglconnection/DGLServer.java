@@ -1,5 +1,7 @@
 package annahack.dglconnection;
 
+import java.io.IOException;
+
 public interface DGLServer
 {
 	public boolean loggedIn();	// user is logged in
@@ -12,7 +14,7 @@ public interface DGLServer
 	public boolean login();		//returns false if unable to login
 	public boolean startGame();	// called when loggedIn() && mainMenu(), presses p
 	
-	public boolean watch(String name); // watches a game
+	public boolean watch(String name) throws IOException; // watches a game
 	
 	
 		//return false if target is not playing
