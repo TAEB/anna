@@ -6,6 +6,9 @@ import java.io.IOException;
 import org.apache.commons.net.telnet.InvalidTelnetOptionException;
 import annahack.telnetconnection.*;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+
 abstract class GeneralDGLConnector
 {
 	protected ApacheBasedTelnetInterface connection;
@@ -27,6 +30,34 @@ abstract class GeneralDGLConnector
 		tc.connect(server(), 23);
 		
 		connection=new ApacheBasedTelnetInterface(tc);
+	}
+	
+	//This should handle logging in on all dgl servers
+	public boolean login()
+	{
+		if (!loggedIn() && mainMenu())
+		{
+			try
+			{
+				BufferedReader up=new BufferedReader(new FileReader("botauth"));
+				String u=up.readLine();
+				String p=up.readLine();
+				up.close();
+				
+				connection.send('l');
+				connection.send(u.getBytes());
+				connection.send('\n');
+				connection.send(p.getBytes());
+				connection.send('l');
+				
+				return true;
+			}catch(IOException e)
+			{
+				return false;
+			}
+		}else{
+			return false;
+		}
 	}
 	
 	abstract String server();
