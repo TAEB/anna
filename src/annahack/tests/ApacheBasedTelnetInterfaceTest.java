@@ -40,6 +40,7 @@ public class ApacheBasedTelnetInterfaceTest
 			Thread.sleep(1000);
 			while (connection.timeSinceUpdate()<1000)	//this is high
 			{
+				System.out.println(connection.timeSinceUpdate());
 				System.out.println("not waiting...");
 				Thread.sleep(100);
 			}
@@ -51,6 +52,7 @@ public class ApacheBasedTelnetInterfaceTest
 			}
 			
 			String input=in.readLine();
+			System.out.println("read.");
 			if (input.startsWith("\\n"))
 				connection.send('\n');
 			else
@@ -58,7 +60,7 @@ public class ApacheBasedTelnetInterfaceTest
 		}
 	}
 	
-	private static char[] bytesToChars(byte[] in)
+	static char[] bytesToChars(byte[] in)
 	{
 		char[] out=new char[in.length];
 		for (int i=0; i<in.length; i++)
