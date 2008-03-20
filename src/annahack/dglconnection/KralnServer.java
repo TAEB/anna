@@ -48,8 +48,22 @@ public class KralnServer extends GeneralDGLConnector implements DGLServer
 	}
 	public boolean login()
 	{
-		//TODO
-		return false;
+		if(super.login())
+		{
+			try
+			{
+				connection.send('1');
+				return true;
+			}
+			catch(IOException e)
+			{
+				return false;
+			}
+		}
+		else
+		{
+			return false;
+		}
 	}
 	public void startGame()
 	{
