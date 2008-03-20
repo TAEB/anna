@@ -33,8 +33,7 @@ public class KralnServer extends GeneralDGLConnector implements DGLServer
 	}
 	public boolean loggedIn()
 	{
-		//TODO
-		return false;
+		return loggedIn;
 	}
 	public boolean mainMenu()
 	{
@@ -53,10 +52,12 @@ public class KralnServer extends GeneralDGLConnector implements DGLServer
 			try
 			{
 				connection.send('1');
+				loggedIn=true;
 				return true;
 			}
 			catch(IOException e)
 			{
+				loggedIn=false;
 				return false;
 			}
 		}
