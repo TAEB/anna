@@ -111,11 +111,10 @@ abstract class GeneralDGLConnector implements DGLServer
 	
 	public boolean watch(String name) throws IOException
 	{
-		
 		try
 		{
 			connection.send('w');
-			connection.peekLine(1);
+			System.out.println(connection.peekLine(1));
 		}
 		catch(IOException e)
 		{

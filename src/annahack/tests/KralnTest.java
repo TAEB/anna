@@ -15,6 +15,7 @@ public class KralnTest
 			if(server.startGame())
 			{
 				System.out.println("Victory");
+				server.watch("Jesus");
 			}
 			else
 			{
