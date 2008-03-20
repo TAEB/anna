@@ -95,6 +95,7 @@ abstract class GeneralDGLConnector implements DGLServer
 			{
 				connection.send('p');
 				inGame=true;
+				mainMenu=false;
 				return true;
 			}
 			catch(IOException e)
