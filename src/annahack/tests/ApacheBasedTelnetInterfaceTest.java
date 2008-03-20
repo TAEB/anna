@@ -6,6 +6,7 @@ import annahack.telnetconnection.*;
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 
 public class ApacheBasedTelnetInterfaceTest
 {
@@ -27,7 +28,8 @@ public class ApacheBasedTelnetInterfaceTest
         tc.addOptionHandler(echoopt);
         tc.addOptionHandler(gaopt);
         
-		tc.connect("slackwell.com", 23);
+		tc.connect("nethack.kraln.com", 23);
+		OutputStream os=tc.getOutputStream();
 		
 		TelnetInterface connection=new ApacheBasedTelnetInterface(tc);
 		
