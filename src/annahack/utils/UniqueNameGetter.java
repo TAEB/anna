@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class UniqueNameGetter
 {
-	private String[] names;
+	private ThreadedShuffler<String> names;
 	public UniqueNameGetter() throws FileNotFoundException, IOException
 	{
 		{
@@ -17,7 +17,8 @@ public class UniqueNameGetter
 			ArrayList<String> namestmp=new ArrayList<String>();
 			while (fread.ready())
 				namestmp.add(fread.readLine());
-			names=namestmp.toArray(new String[namestmp.size()]); 
+			names=new ThreadedShuffler<String>(
+				namestmp.toArray(new String[namestmp.size()]));
 		}
 		
 		
