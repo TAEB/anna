@@ -409,7 +409,6 @@ public abstract class Emulator
 	
 	protected void clearRow(int row)
 	{
-		System.out.println("Clearing row "+row);
 		screen[row]=new TerminalSymbol[term_width];
 		for (int j=0; j<term_width; j++)
 			screen[row][j]=new TerminalSymbol();
