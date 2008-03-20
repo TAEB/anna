@@ -8,7 +8,7 @@ import annahack.telnetconnection.*;
 
 abstract class GeneralDGLConnector
 {
-	ApacheBasedTelnetInterface connection;
+	protected ApacheBasedTelnetInterface connection;
 	
 	public GeneralDGLConnector()
 		throws SocketException, IOException, InvalidTelnetOptionException
