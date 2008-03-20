@@ -85,9 +85,24 @@ abstract class GeneralDGLConnector
 		return false;
 	}
 	
-	public void startGame()
+	public boolean startGame()
 	{
-		//TODO
+		if(loggedIn() && mainMenu())
+		{
+			try
+			{
+				connection.send('p');
+				return true;
+			}
+			catch(IOException e)
+			{
+				return false;
+			}
+		}
+		else
+		{
+			return false;
+		}
 	}
 	
 	public boolean watch(String name)

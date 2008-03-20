@@ -66,9 +66,9 @@ public class KralnServer extends GeneralDGLConnector implements DGLServer
 			return false;
 		}
 	}
-	public void startGame()
+	public boolean startGame()
 	{
-		//TODO
-		System.err.println("Method not implemented");
+		inGame=super.startGame();
+		return inGame;
 	}
 }
