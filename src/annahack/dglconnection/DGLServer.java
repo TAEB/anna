@@ -1,6 +1,7 @@
 package annahack.dglconnection;
 
 import java.io.IOException;
+import annahack.telnetconnection.TelnetInterface;
 
 public interface DGLServer
 {
@@ -15,8 +16,16 @@ public interface DGLServer
 	public boolean startGame();	// called when loggedIn() && mainMenu(), presses p
 	
 	public boolean watch(String name) throws IOException; // watches a game
-	
-	
 		//return false if target is not playing
 		//(other errors should be an exception)
+	
+	public TelnetInterface dumpInterface();
+	/* This should give it's internal TelnetInterface,
+	 *	only if (loggedIn() && inGame() || spectating()),
+	 *  and return null elsewise
+	 * It should remove it internally, and all future
+	 *  calls to the functions should fail (NullPointerException is fine)
+	 *
+	 * This way, after using this class to log in, it can be deallocated.
+	 */
 }
