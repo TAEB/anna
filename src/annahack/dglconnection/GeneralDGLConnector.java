@@ -105,9 +105,19 @@ abstract class GeneralDGLConnector
 		}
 	}
 	
-	public boolean watch(String name)
+	public boolean watch(String name) throws IOException
 	{
-		//TODO
+		
+		try
+		{
+			connection.send('w');
+			connection.peekLine(1);
+		}
+		catch(IOException e)
+		{
+			throw e;
+			//Is this what you meant by "return false if target is not playing (other errors should be an exception)?
+		}
 		return false;
 	}
 }
