@@ -83,8 +83,7 @@ abstract class GeneralDGLConnector implements DGLServer
 	
 	public boolean spectating()
 	{
-		//TODO
-		return false;
+		return spectating;
 	}
 	
 	public boolean startGame()

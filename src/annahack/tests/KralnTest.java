@@ -2,8 +2,8 @@ package annahack.tests;
 
 import annahack.dglconnection.KralnServer;
 
-public class KralnTest {
-
+public class KralnTest 
+{
 	/**
 	 * @param args
 	 */
