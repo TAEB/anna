@@ -9,6 +9,7 @@ public interface DGLServer
 	public boolean inGame();    // control is with nethack
 	public boolean spectating();// spectating menu or watching game
 	
+	public boolean login();		//returns false if unable to login
 	public void startGame();	// called when mainMenu(), presses p
 	
 	public boolean watch(String name); // watches a game
