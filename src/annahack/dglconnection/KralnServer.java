@@ -6,22 +6,15 @@ import java.net.SocketException;
 
 public class KralnServer extends GeneralDGLConnector implements DGLServer
 {
-	private boolean spectating, mainMenu, inGame, loggedIn;
-	
-	
 	public KralnServer() throws InvalidTelnetOptionException, SocketException, IOException
 	{
 		super();
-		spectating = false;
-		mainMenu=true;
-		inGame=false;
-		loggedIn=false;
 	}
 	public String server()
 	{
 		return "nethack.kraln.com";
 	}
-	public boolean spectating()
+/*	public boolean spectating()
 	{
 		//TODO
 		return false;
@@ -42,7 +35,7 @@ public class KralnServer extends GeneralDGLConnector implements DGLServer
 	public boolean inGame()
 	{
 		return inGame;
-	}
+	}*/
 	public boolean login()
 	{
 		if(super.login())
@@ -64,9 +57,9 @@ public class KralnServer extends GeneralDGLConnector implements DGLServer
 			return false;
 		}
 	}
-	public boolean startGame()
+	/*public boolean startGame()
 	{
 		inGame=super.startGame();
 		return inGame;
-	}
+	}*/
 }

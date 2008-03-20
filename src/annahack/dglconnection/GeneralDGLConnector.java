@@ -9,10 +9,10 @@ import annahack.telnetconnection.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
-abstract class GeneralDGLConnector
+abstract class GeneralDGLConnector implements DGLServer
 {
 	protected ApacheBasedTelnetInterface connection;
-	
+	protected boolean spectating, mainMenu, inGame, loggedIn;
 	public GeneralDGLConnector()
 		throws SocketException, IOException, InvalidTelnetOptionException
 	{
@@ -30,6 +30,11 @@ abstract class GeneralDGLConnector
 		tc.connect(server(), 23);
 		
 		connection=new ApacheBasedTelnetInterface(tc);
+		
+		spectating = false;
+		mainMenu=true;
+		inGame=false;
+		loggedIn=false;
 	}
 	
 	//This should handle logging in on all dgl servers
@@ -63,20 +68,17 @@ abstract class GeneralDGLConnector
 	
 	public boolean inGame()
 	{
-		//TODO
-		return false;
+		return inGame;
 	}
 	
 	public boolean loggedIn()
 	{
-		//TODO
-		return false;
+		return loggedIn;
 	}
 	
 	public boolean mainMenu()
 	{
-		//TODO
-		return false;
+		return mainMenu;
 	}
 	
 	public boolean spectating()
@@ -92,15 +94,18 @@ abstract class GeneralDGLConnector
 			try
 			{
 				connection.send('p');
+				inGame=true;
 				return true;
 			}
 			catch(IOException e)
 			{
+				inGame=false;
 				return false;
 			}
 		}
 		else
 		{
+			inGame=false;
 			return false;
 		}
 	}
