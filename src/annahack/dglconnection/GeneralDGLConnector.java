@@ -12,7 +12,7 @@ import java.io.FileReader;
 abstract class GeneralDGLConnector implements DGLServer
 {
 	protected ApacheBasedTelnetInterface connection;
-	protected boolean spectating, mainMenu, inGame, loggedIn;
+	protected boolean spectating, mainMenu, inGame, loggedIn, dead;
 	public GeneralDGLConnector()
 		throws SocketException, IOException, InvalidTelnetOptionException
 	{
@@ -35,6 +35,7 @@ abstract class GeneralDGLConnector implements DGLServer
 		mainMenu=true;
 		inGame=false;
 		loggedIn=false;
+		dead=false;
 	}
 	
 	//This should handle logging in on all dgl servers
@@ -121,6 +122,23 @@ abstract class GeneralDGLConnector implements DGLServer
 			throw e;
 			//Is this what you meant by "return false if target is not playing (other errors should be an exception)?
 		}
+		
+		
 		return false;
+	}
+	
+	public TelnetInterface dumpInterface()
+	{
+		if(loggedIn() && (inGame() || spectating()))
+		{
+			dead=true;
+			TelnetInterface returno=connection;
+			connection=null;
+			return returno;
+		}
+		else
+		{
+			return null;
+		}
 	}
 }
