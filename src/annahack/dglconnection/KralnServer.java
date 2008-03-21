@@ -14,28 +14,6 @@ public class KralnServer extends GeneralDGLConnector implements DGLServer
 	{
 		return "nethack.kraln.com";
 	}
-/*	public boolean spectating()
-	{
-		//TODO
-		return false;
-	}
-	public boolean watch(String game)
-	{
-		//TODO
-		return false;	
-	}
-	public boolean loggedIn()
-	{
-		return loggedIn;
-	}
-	public boolean mainMenu()
-	{
-		return mainMenu;
-	}
-	public boolean inGame()
-	{
-		return inGame;
-	}*/
 	public boolean login()
 	{
 		if(super.login())
@@ -57,9 +35,4 @@ public class KralnServer extends GeneralDGLConnector implements DGLServer
 			return false;
 		}
 	}
-	/*public boolean startGame()
-	{
-		inGame=super.startGame();
-		return inGame;
-	}*/
 }
