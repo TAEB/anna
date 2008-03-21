@@ -5,7 +5,7 @@ import java.net.SocketException;
 import java.io.IOException;
 import org.apache.commons.net.telnet.InvalidTelnetOptionException;
 import annahack.telnetconnection.*;
-
+import annahack.utils.StringFunctions;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
@@ -111,21 +111,36 @@ abstract class GeneralDGLConnector implements DGLServer
 		}
 	}
 	
-	public boolean watch(String name) throws IOException
+	public boolean watch(String name) throws Exception
 	{
 		try
 		{
 			connection.send('w');
-			System.out.println(connection.peekLine(1));
+			Thread.sleep(1000);
+			String line="";
+			for(int i=1; i<24; i++)
+			{	
+				line=new String(connection.peekLine(i));
+				if(line.charAt(2)==')') //Is the third character ), from the form ' a) name'
+				{
+					System.out.println(line.substring(4, 21).trim());
+					if(line.substring(4, 21).trim().equals(name))
+					{
+						connection.send(line.charAt(1));
+						return true;
+					}
+					//TODO: Implement changing pages
+				}	
+			}
+			return false;
 		}
-		catch(IOException e)
+		catch(Exception e)
 		{
 			throw e;
+			//TODO: fix this
+			//throw e;
 			//Is this what you meant by "return false if target is not playing (other errors should be an exception)?
 		}
-		
-		
-		return false;
 	}
 	
 	public TelnetInterface dumpInterface()

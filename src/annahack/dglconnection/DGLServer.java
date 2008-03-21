@@ -15,7 +15,7 @@ public interface DGLServer
 	public boolean login();		//returns false if unable to login
 	public boolean startGame();	// called when loggedIn() && mainMenu(), presses p
 	
-	public boolean watch(String name) throws IOException; // watches a game
+	public boolean watch(String name) throws Exception; // watches a game
 		//return false if target is not playing
 		//(other errors should be an exception)
 	

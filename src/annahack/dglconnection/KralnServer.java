@@ -1,4 +1,4 @@
-package annahack.dglconnection;
+ package annahack.dglconnection;
 
 import org.apache.commons.net.telnet.InvalidTelnetOptionException;
 import java.io.IOException;
