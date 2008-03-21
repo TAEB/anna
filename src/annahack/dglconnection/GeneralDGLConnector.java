@@ -5,7 +5,6 @@ import java.net.SocketException;
 import java.io.IOException;
 import org.apache.commons.net.telnet.InvalidTelnetOptionException;
 import annahack.telnetconnection.*;
-import annahack.utils.StringFunctions;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
