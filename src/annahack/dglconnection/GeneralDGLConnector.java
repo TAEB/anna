@@ -115,6 +115,8 @@ abstract class GeneralDGLConnector implements DGLServer
 		try
 		{
 			connection.send('w');
+			spectating=true;
+			mainMenu=false;
 			Thread.sleep(1000);
 			String line="";
 			for(int i=1; i<24; i++)
@@ -131,6 +133,9 @@ abstract class GeneralDGLConnector implements DGLServer
 					//TODO: Implement changing pages
 				}	
 			}
+			connection.send('q');
+			spectating=false;
+			mainMenu=true;
 			return false;
 		}
 		catch(Exception e)
