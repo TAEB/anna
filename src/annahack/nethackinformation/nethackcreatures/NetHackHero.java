@@ -24,5 +24,8 @@ public interface NetHackHero
 	 */
 	public PlayerClass getPlayerClass();
 
+	/**
+	 * Returns the player's race
+	 */
 	public PlayerRace getPlayerRace();
 }
