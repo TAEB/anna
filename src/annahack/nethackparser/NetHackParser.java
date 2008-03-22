@@ -20,7 +20,7 @@ public class NetHackParser
 	 * @return
 	 * 0 if there were no messages,
 	 * 1 if there were messages
-	 * 2 if there were messages and space needs to be sent (--more--)
+	 * 2 if there were messages and space needs to be sent (--More--)
 	 * 3 if the last message is a prompt
 	 */
 	public byte checkMessages() throws IOException
@@ -49,7 +49,13 @@ public class NetHackParser
 				if (search!=-1)
 				{
 					//Item list
-					
+					for (int i=1;
+					(line=new String(com.peekLine(i), search, 80-search).trim()).
+						indexOf("--More--")==-1; i++)
+					{
+						itemsBuf.add(line);
+					}
+					return 2;
 				}else{
 					
 				}
