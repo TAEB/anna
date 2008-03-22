@@ -43,7 +43,8 @@ public class NetHackMetagamingFunctions
 		{
 			t.send((char)27); //quit out of menus
 			t.send((char)27); //just in case
-			t.send("#q\nyy y y  ".getBytes());//send #quit
+			t.send("#q\n".getBytes());//send #quit
+			t.send("yy y y  q".getBytes()); 
 			//Quit the game and show all identified stuffs
 			return true;
 		}
