@@ -12,11 +12,7 @@ public class TheHero implements NetHackHero
 	
 	public TheHero()
 	{
-		align=1;
-		hasGender=true;
-		isFem=true;
-		//pRace=PlayerRace.human
-		//pClass=PlayerClass.valkerie
+		this(new PlayerClass(), new PlayerRace((byte)'v'), true, (byte)1);
 	}
 	
 	public TheHero(PlayerClass pclass, PlayerRace race, boolean isFemale, byte alignment)
