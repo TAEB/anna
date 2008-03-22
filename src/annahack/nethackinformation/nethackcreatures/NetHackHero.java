@@ -20,7 +20,12 @@ public interface NetHackHero
 	public boolean isFemale();
 	
 	/**
-	 * 
+	 * Returns the player's class
 	 */
 	public PlayerClass getPlayerClass();
+	
+	/**
+	 * @return 
+	 */
+	public PlayerRace getRace();
 }
