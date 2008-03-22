@@ -2,6 +2,10 @@ package annahack.utils;
 
 public class StringFunctions 
 {
+	private StringFunctions()
+	{
+	}
+	
 	public static char[] bytesToChars(byte[] in)
 	{
 		char[] out=new char[in.length];
