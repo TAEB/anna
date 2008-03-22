@@ -1,6 +1,5 @@
 package annahack.dglconnection;
 
-import java.io.IOException;
 import annahack.telnetconnection.TelnetInterface;
 
 public interface DGLServer
