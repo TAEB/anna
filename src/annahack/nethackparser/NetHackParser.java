@@ -44,7 +44,7 @@ public class NetHackParser
 					messageBuf.add(msgs[i]);
 				}
 			}else{
-				//No --More-- on first lines
+				//No --More-- on first line
 				search=line.indexOf("Things that are here");
 				if (search!=-1)
 				{
