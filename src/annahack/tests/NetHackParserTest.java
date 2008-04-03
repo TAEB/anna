@@ -14,6 +14,8 @@ public class NetHackParserTest
 {
 	public static void main(String[] args) throws Exception
 	{
+		//NetHackParser nhp=new NetHackParser(getLoggedInInterface());
+		
 		TelnetInterface connection = getLoggedInInterface();
 		NetHackMetagamingFunctions.createCharacter(connection);
 		NetHackParser nhp=new NetHackParser(connection);
@@ -39,4 +41,7 @@ public class NetHackParserTest
 		}
 		return kraln.dumpInterface();
 	}
+	
+	
+
 }
