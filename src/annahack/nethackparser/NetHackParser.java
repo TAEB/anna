@@ -41,7 +41,7 @@ public class NetHackParser
 				String[] msgs=line.substring(0, search).split("  ");
 				for (int i=0; i<msgs.length; i++)
 				{
-					messageBuf.add(msgs[i]);
+					messageBuf.add(msgs[i].trim());
 				}
 			}else{
 				//No --More-- on first line
