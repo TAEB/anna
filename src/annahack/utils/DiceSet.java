@@ -7,6 +7,12 @@ public class DiceSet
 	private double average, stdDev;
 	private int min, max;
 	private ArrayList<Dice> dice=new ArrayList<Dice>();
+	
+	/**
+	 * Constructs and calculates DiceSet
+	 * @param takes a string in the form of "2d6+8d12"
+	 * @throws BadDiceException
+	 */
 	public DiceSet(String d) throws BadDiceException
 	{
 		String set=d;
@@ -74,21 +80,37 @@ public class DiceSet
 		}
 	}
 	
+	/**
+	 * 
+	 * @return minimum possible roll
+	 */
 	public int getMin()
 	{
 		return min;
 	}
 	
+	/**
+	 * 
+	 * @return maximum possible roll
+	 */
 	public int getMax()
 	{
 		return max;
 	}
 	
+	/**
+	 * 
+	 * @return average roll
+	 */
 	public double getAverage()
 	{
 		return average;
 	}
 	
+	/**
+	 * 
+	 * @return standard deviation
+	 */
 	public double getStdDev()
 	{
 		return stdDev;
