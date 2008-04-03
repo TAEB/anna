@@ -1,6 +1,6 @@
 package annahack.nethackparser;
 
-public class UnparseableBullshitException extends Exception
+public class UnparseableBullshitException extends RuntimeException
 {
 	public UnparseableBullshitException(String probLine)
 	{
