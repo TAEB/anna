@@ -69,11 +69,11 @@ public class NetHackParser
 		return 0;
 	}
 	
-	/*
+	/**
 	 * Checks for a "things that are here" starting on the given line.
 	 * Line should be 0 or 2.
 	 * Returns true if things are here.
-	 */
+	 **/
 	private boolean thingsThatAreHere(int linenum) throws IOException
 	{
 		String line=new String(com.peekLine(linenum));
