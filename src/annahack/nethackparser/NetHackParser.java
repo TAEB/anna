@@ -43,6 +43,7 @@ public class NetHackParser
 				{
 					messageBuf.add(msgs[i].trim());
 				}
+				return 2;
 			}else{
 				//No --More-- on first line
 				
@@ -52,23 +53,11 @@ public class NetHackParser
 				if (line.matches("There is an? ([a-z ]+) here."))
 				{
 					messageBuf.add(line);
-					line=new String(com.peekLine(2));
 					
-					search=line.indexOf("Things that are here");
-					if (search!=-1)
-					{
-						//Item list
-						for (int i=1;
-						(line=new String(com.peekLine(i), search, 80-search).trim()).
-							indexOf("--More--")==-1; i++)
-						{
-							itemsBuf.add(line);
-						}
+					if (thingsThatAreHere(2))
 						return 2;
-					}else{
-						
-					}
-					return 2;
+					
+					System.err.println("Unable to figure out line:\n"+line);
 				}else{
 					
 				}
