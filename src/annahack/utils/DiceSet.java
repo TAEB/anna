@@ -30,6 +30,33 @@ public class DiceSet
 			}
 		}
 		
+		int[] bins = new int[max+1]; //It will be easier this way, I swear
+		bins[0] = 1;
+		//Begin Dirty Hack (a la Chris)
+		for(int i=0; i<dice.size(); i++)
+		{
+			for(int j=0; j<dice.get(i).getNum(); j++)
+			{
+				int[] temp = new int[max+1];
+				
+				for(int k=1; k<=dice.get(i).getMax(); k++)
+				{
+					for(int aa = 0; aa < max+1-k;aa++)
+					{
+						temp[aa+k] += bins[aa];
+					}
+				}
+				
+				bins = temp;
+			}
+		}
+		//End Dirty Hack
+		
+		for(int i=0; i<bins.length; i++)
+		{
+			System.out.println(bins[i]);
+		}
+		System.out.println();
 		System.out.println(min);
 		System.out.println(max);
 		System.out.println(rolls);
