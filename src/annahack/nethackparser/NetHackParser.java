@@ -58,6 +58,7 @@ public class NetHackParser
 						return 2;
 					
 					System.err.println("Unable to figure out line:\n"+line);
+					throw new UnparseableBullshitException(line);
 				}else{
 					
 				}
