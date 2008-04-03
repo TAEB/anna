@@ -5,15 +5,16 @@ import java.util.ArrayList;
 public class DiceSet 
 {
 	private double average, stdDev;
+	private int min, max;
 	private ArrayList<Dice> dice=new ArrayList<Dice>();
 	public DiceSet(String d) throws BadDiceException
 	{
 		String set=d;
 		String[] a=d.split("\\+");
 		
-		int min=0;
-		int max=0;
-		int sum=0;
+		min=0;
+		max=0;
+
 		int rolls=1;
 		for(int i=0; i<a.length; i++)
 		{
@@ -51,14 +52,45 @@ public class DiceSet
 			}
 		}
 		//End Dirty Hack
+		int sum=0;
+		for(int i=0; i<bins.length; i++)
+		{
+			sum+=bins[i]*i;
+		}
+		average=(double)sum/rolls;
+		
+		//It's Standard Deviation time
+		
+		double dsum=0.0;
+		for(int i=0; i<bins.length; i++)
+		{
+			dsum+=(Math.pow(i-average,2)*bins[i]);
+		}
+		stdDev=Math.sqrt(dsum/(rolls-1));
 		
 		for(int i=0; i<bins.length; i++)
 		{
 			System.out.println(bins[i]);
 		}
-		System.out.println();
-		System.out.println(min);
-		System.out.println(max);
-		System.out.println(rolls);
+	}
+	
+	public int getMin()
+	{
+		return min;
+	}
+	
+	public int getMax()
+	{
+		return max;
+	}
+	
+	public double getAverage()
+	{
+		return average;
+	}
+	
+	public double getStdDev()
+	{
+		return stdDev;
 	}
 }
