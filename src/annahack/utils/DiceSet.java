@@ -52,7 +52,7 @@ public class DiceSet
 		}
 		
 		int[] bins = new int[max+1]; //It will be easier this way, I swear
-		bins[0] = 1;
+		bins[add] = 1;
 		//Begin Dirty Hack (a la Chris)
 		for(int i=0; i<dice.size(); i++)
 		{
@@ -80,7 +80,6 @@ public class DiceSet
 		average=(double)sum/rolls;
 		
 		//It's Standard Deviation time
-		
 		double dsum=0.0;
 		for(int i=0; i<bins.length; i++)
 		{
