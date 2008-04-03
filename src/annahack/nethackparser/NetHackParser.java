@@ -1,5 +1,5 @@
 package annahack.nethackparser;
- 
+
 import annahack.telnetconnection.*;
 import java.util.Queue;
 import java.io.IOException;
