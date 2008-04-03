@@ -60,7 +60,9 @@ public class NetHackParser
 					System.err.println("Unable to figure out line:\n"+line);
 					throw new UnparseableBullshitException(line);
 				}else{
-					
+					StringBuffer messageBlob=new StringBuffer(line);
+					for (int i=1; i<23; i++)
+						messageBlob.append(new String(com.peekLine(0)));
 					return 0;
 				}
 				
