@@ -45,15 +45,28 @@ public class NetHackParser
 				}
 			}else{
 				//No --More-- on first line
-				search=line.indexOf("Things that are here");
-				if (search!=-1)
+				
+				if (thingsThatAreHere(0))
+					return 2;
+				
+				if (line.matches("There is an? ([a-z ]+) here."))
 				{
-					//Item list
-					for (int i=1;
-					(line=new String(com.peekLine(i), search, 80-search).trim()).
-						indexOf("--More--")==-1; i++)
+					messageBuf.add(line);
+					line=new String(com.peekLine(2));
+					
+					search=line.indexOf("Things that are here");
+					if (search!=-1)
 					{
-						itemsBuf.add(line);
+						//Item list
+						for (int i=1;
+						(line=new String(com.peekLine(i), search, 80-search).trim()).
+							indexOf("--More--")==-1; i++)
+						{
+							itemsBuf.add(line);
+						}
+						return 2;
+					}else{
+						
 					}
 					return 2;
 				}else{
@@ -65,4 +78,30 @@ public class NetHackParser
 		
 		return 0;
 	}
+	
+	/*
+	 * Checks for a "things that are here" starting on the given line.
+	 * Line should be 0 or 2.
+	 * Returns true if things are here.
+	 */
+	private boolean thingsThatAreHere(int linenum) throws IOException
+	{
+		String line=new String(com.peekLine(linenum));
+		
+		int search=line.indexOf("Things that are here");
+		
+		if (search==-1)
+			return false;	//Clearly, things are not here
+		
+		//Item list
+		for (int i=1;
+		(line=new String(com.peekLine(i), search, 80-search).trim()).
+			indexOf("--More--")==-1; i++)
+		{
+			itemsBuf.add(line);
+		}
+		
+		return true;
+	}
+	
 }
