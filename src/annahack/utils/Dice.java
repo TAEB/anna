@@ -1,5 +1,6 @@
 package annahack.utils;
 
+//This is a dirty hack, don't hurt me Alex
 public class Dice 
 {
 	private int num;
