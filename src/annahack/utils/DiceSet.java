@@ -21,11 +21,25 @@ public class DiceSet
 		min=0;
 		max=0;
 
+		int add=0;
+		if(!a[a.length-1].contains("d"))
+		{
+			add=Integer.parseInt(a[a.length-1]);
+			min+=add;
+			max+=add;
+			String[] temp=new String[a.length-1];
+			for(int i=0; i<a.length-1; i++)
+			{
+				temp[i]=a[i];
+			}
+			a=temp;
+		}
 		int rolls=1;
 		for(int i=0; i<a.length; i++)
 		{
 			dice.add(new Dice(a[i]));
 		}
+
 		
 		for(int i=0; i<dice.size(); i++)
 		{
@@ -78,6 +92,8 @@ public class DiceSet
 		{
 			System.out.println(bins[i]);
 		}
+		
+		System.out.println(min+" "+max+" "+average);
 	}
 	
 	/**
