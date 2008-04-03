@@ -61,12 +61,12 @@ public class NetHackParser
 					throw new UnparseableBullshitException(line);
 				}else{
 					
+					return 0;
 				}
 				
 			}
 		}
 		
-		return 0;
 	}
 	
 	/**
