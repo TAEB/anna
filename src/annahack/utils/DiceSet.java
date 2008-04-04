@@ -10,12 +10,11 @@ public class DiceSet
 	
 	/**
 	 * Constructs and calculates DiceSet
-	 * @param takes a string in the form of "2d6+8d12"
+	 * @param takes a string in the form of "2d6+8d12+4 (constant must be at end)"
 	 * @throws BadDiceException
 	 */
 	public DiceSet(String d) throws BadDiceException
 	{
-		String set=d;
 		String[] a=d.split("\\+");
 		
 		min=0;
