@@ -84,7 +84,7 @@ public class DiceSet
 		{
 			dsum+=(Math.pow(i-average,2)*bins[i]);
 		}
-		stdDev=Math.sqrt(dsum/(rolls-1));
+		stdDev=Math.sqrt(dsum/(rolls));
 	}
 	
 	/**
