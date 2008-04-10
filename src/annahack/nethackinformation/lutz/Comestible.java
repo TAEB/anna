@@ -2,6 +2,13 @@ package annahack.nethackinformation.lutz;
 
 public class Comestible extends GeneralItem implements ItemClass
 {
+	protected int numTurnsToEat;
+	
+	public int turnsToEat()
+	{
+		return numTurnsToEat;
+	}
+	
 	public boolean applyable() 
 	{
 		return false;

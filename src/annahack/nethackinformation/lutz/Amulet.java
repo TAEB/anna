@@ -2,7 +2,9 @@ package annahack.nethackinformation.lutz;
 
 public class Amulet extends GeneralItem implements ItemClass 
 {
-
+	protected int weight=20;
+	protected int value=150;
+	
 	public boolean applyable() 
 	{
 		return false;

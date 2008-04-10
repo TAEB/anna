@@ -2,6 +2,8 @@ package annahack.nethackinformation.lutz;
 
 public class Potion extends GeneralItem implements ItemClass
 {
+	protected int weight=20;
+	
 	public boolean applyable() 
 	{
 		return false;

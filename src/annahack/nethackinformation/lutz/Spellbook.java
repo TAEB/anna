@@ -2,6 +2,8 @@ package annahack.nethackinformation.lutz;
 
 public class Spellbook extends GeneralItem implements ItemClass {
 
+	protected int weight=50;
+	
 	public boolean applyable() 
 	{
 		return false;

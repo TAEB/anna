@@ -2,7 +2,8 @@ package annahack.nethackinformation.lutz;
 
 public class Scroll extends GeneralItem implements ItemClass 
 {
-
+	protected int weight=5;
+	
 	public boolean applyable() 
 	{
 		return false;

@@ -3,6 +3,7 @@ package annahack.nethackinformation.lutz;
 public class Wand extends GeneralItem implements ItemClass 
 {
 	protected int charges;
+	protected int weight=7;
 	
 	public int getCharges()
 	{

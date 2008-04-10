@@ -2,6 +2,8 @@ package annahack.nethackinformation.lutz;
 
 public class Ring extends GeneralItem implements ItemClass
 {
+	protected int weight=3;
+	
 	public boolean applyable() 
 	{
 		return false;
