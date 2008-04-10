@@ -1,6 +1,6 @@
 package annahack.nethackinformation.lutz;
 
-public class Comestible implements ItemClass
+public class Comestible extends GeneralItem implements ItemClass
 {
 	public boolean applyable() 
 	{

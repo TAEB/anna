@@ -1,6 +1,6 @@
 package annahack.nethackinformation.lutz;
 
-public class Armor implements ItemClass
+public class Armor extends GeneralItem implements ItemClass
 {
 	public boolean applyable() 
 	{

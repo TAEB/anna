@@ -1,6 +1,6 @@
 package annahack.nethackinformation.lutz;
 
-public class Statue implements ItemClass {
+public class Statue extends GeneralItem implements ItemClass {
 
 	public boolean applyable() 
 	{

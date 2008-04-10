@@ -1,7 +1,15 @@
 package annahack.nethackinformation.lutz;
 
-public class Weapon implements ItemClass
+import annahack.utils.DiceSet;
+
+public class Weapon extends GeneralItem implements ItemClass
 {
+	protected DiceSet dmg;
+
+	public DiceSet damage()
+	{
+		return dmg;
+	}
 	public boolean applyable() 
 	{
 		return false;

@@ -1,6 +1,6 @@
 package annahack.nethackinformation.lutz;
 
-public class Ring implements ItemClass
+public class Ring extends GeneralItem implements ItemClass
 {
 	public boolean applyable() 
 	{

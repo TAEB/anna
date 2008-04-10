@@ -1,7 +1,14 @@
 package annahack.nethackinformation.lutz;
 
-public class Wand implements ItemClass 
+public class Wand extends GeneralItem implements ItemClass 
 {
+	protected int charges;
+	
+	public int getCharges()
+	{
+		return charges;
+	}
+	
 	public boolean applyable() 
 	{
 		return true;

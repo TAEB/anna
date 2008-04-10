@@ -1,6 +1,6 @@
 package annahack.nethackinformation.lutz;
 
-public class Potion implements ItemClass
+public class Potion extends GeneralItem implements ItemClass
 {
 	public boolean applyable() 
 	{

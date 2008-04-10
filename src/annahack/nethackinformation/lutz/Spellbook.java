@@ -1,6 +1,6 @@
 package annahack.nethackinformation.lutz;
 
-public class Spellbook implements ItemClass {
+public class Spellbook extends GeneralItem implements ItemClass {
 
 	public boolean applyable() 
 	{

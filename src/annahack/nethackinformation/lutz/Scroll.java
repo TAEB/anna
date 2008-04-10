@@ -1,6 +1,6 @@
 package annahack.nethackinformation.lutz;
 
-public class Scroll implements ItemClass 
+public class Scroll extends GeneralItem implements ItemClass 
 {
 
 	public boolean applyable() 

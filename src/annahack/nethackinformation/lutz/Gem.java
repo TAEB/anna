@@ -1,6 +1,6 @@
 package annahack.nethackinformation.lutz;
 
-public class Gem implements ItemClass 
+public class Gem extends GeneralItem implements ItemClass 
 {
 
 	public boolean applyable() 

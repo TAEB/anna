@@ -1,6 +1,6 @@
 package annahack.nethackinformation.lutz;
 
-public class Amulet implements ItemClass 
+public class Amulet extends GeneralItem implements ItemClass 
 {
 
 	public boolean applyable() 

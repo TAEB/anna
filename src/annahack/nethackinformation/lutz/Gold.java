@@ -1,6 +1,6 @@
 package annahack.nethackinformation.lutz;
 
-public class Gold implements ItemClass
+public class Gold extends GeneralItem implements ItemClass
 {
 	public boolean applyable() 
 	{
