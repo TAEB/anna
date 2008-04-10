@@ -2,9 +2,8 @@ package annahack.nethackinformation.nethackcreatures;
 
 import annahack.nethackinformation.nethackplayer.*;
 
-public class TheHero implements NetHackHero 
+public class TheHero extends Creature implements NetHackHero 
 {
-	private byte align;
 	private PlayerClass pClass;
 	private PlayerRace pRace;
 	private boolean isFem;
