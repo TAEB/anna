@@ -9,6 +9,6 @@ public class UnparseableBullshitException extends RuntimeException
 
 	public UnparseableBullshitException(String probLine)
 	{
-		super("Could not parse: "+probLine);
+		super("Could not parse: "+probLine+"\nIt is bullshit.");
 	}
 }
