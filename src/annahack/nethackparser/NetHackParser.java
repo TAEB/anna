@@ -1,12 +1,12 @@
 package annahack.nethackparser;
 
-import annahack.telnetconnection.*;
 import java.util.Queue;
 import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import annahack.nethackinformation.nethackplayer.PlayerWriter;
 import annahack.nethackinformation.nethackplayer.Player;
+import annahack.telnetconnection.TelnetInterface;
 
 public class NetHackParser
 {
@@ -247,5 +247,4 @@ public class NetHackParser
 	{
 		return turn;
 	}
-	
 }
