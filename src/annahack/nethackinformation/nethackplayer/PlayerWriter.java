@@ -8,7 +8,7 @@ public class PlayerWriter
 		player = new Player();
 	}
 	
-	protected PlayerWriter(PlayerClass pclass, PlayerRace race, boolean isFem, byte alignment)
+	public PlayerWriter(PlayerClass pclass, PlayerRace race, boolean isFem, byte alignment)
 	{
 		player = new Player(pclass, race, isFem, alignment);
 	}
