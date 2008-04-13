@@ -2,19 +2,19 @@ package annahack.nethackinformation.nethackplayer;
 
 import annahack.nethackinformation.nethackcreatures.Creature;
 
-public class TheHero extends Creature implements NetHackHero 
+public class Player extends Creature implements NetHackHero 
 {
 	private PlayerClass pClass;
 	private PlayerRace pRace;
 	private boolean isFem;
 	private boolean hasGender;
 	
-	public TheHero()
+	Player()
 	{
 		this(new PlayerClass(), new PlayerRace((byte)'v'), true, (byte)1);
 	}
 	
-	public TheHero(PlayerClass pclass, PlayerRace race, boolean isFemale, byte alignment)
+	Player(PlayerClass pclass, PlayerRace race, boolean isFemale, byte alignment)
 	{
 		pClass=pclass;
 		pRace=race;
