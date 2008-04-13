@@ -195,7 +195,6 @@ public class NetHackParser
 		
 		try
 		{
-			
 			//Begin top line
 			pw.setSt(Integer.parseInt(m_st.group()));
 			pw.setCo(Integer.parseInt(m_co.group()));
@@ -226,13 +225,27 @@ public class NetHackParser
 		{
 			return false;
 		}
-		
 		return true;
 	}
 	
 	public Player getPlayer()
 	{
 		return pw.getPlayer();
+	}
+	
+	public int getScore()
+	{
+		return score;
+	}
+	
+	public int getDLvl()
+	{
+		return dlvl;
+	}
+	
+	public int getTurn()
+	{
+		return turn;
 	}
 	
 }
