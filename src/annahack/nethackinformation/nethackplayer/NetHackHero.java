@@ -1,6 +1,4 @@
-package annahack.nethackinformation.nethackcreatures;
-
-import annahack.nethackinformation.nethackplayer.*;
+package annahack.nethackinformation.nethackplayer;
 
 public interface NetHackHero
 {

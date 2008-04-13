@@ -1,6 +1,6 @@
-package annahack.nethackinformation.nethackcreatures;
+package annahack.nethackinformation.nethackplayer;
 
-import annahack.nethackinformation.nethackplayer.*;
+import annahack.nethackinformation.nethackcreatures.Creature;
 
 public class TheHero extends Creature implements NetHackHero 
 {
