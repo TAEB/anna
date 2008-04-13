@@ -6,33 +6,48 @@ public class Player extends Creature implements NetHackHero
 {
 	private PlayerClass pClass;
 	private PlayerRace pRace;
-	private boolean isFem;
-	private boolean hasGender;
-	
-	Player()
+
+	private int xp;
+	private int level;
+
+	protected Player()
 	{
 		this(new PlayerClass(), new PlayerRace((byte)'v'), true, (byte)1);
 	}
 	
-	Player(PlayerClass pclass, PlayerRace race, boolean isFemale, byte alignment)
+	protected Player(PlayerClass pclass, PlayerRace race, boolean isFem, byte alignment)
 	{
 		pClass=pclass;
 		pRace=race;
-		isFem=isFemale;
-		hasGender=true;
+		isFemale=isFem;
+		isMale=!isFem;
 		align=alignment;
 	}
 	
-	public boolean isFemale()
-	{
-		return isFem;
+	protected void setXp(int xp) {
+		this.xp = xp;
 	}
-	
-	public boolean hasGender()
-	{
-		return hasGender;
+
+	protected void setLevel(int level) {
+		this.level = level;
 	}
-	
+
+	public PlayerClass getPClass() {
+		return pClass;
+	}
+
+	public PlayerRace getPRace() {
+		return pRace;
+	}
+
+	public int getXp() {
+		return xp;
+	}
+
+	public int getLevel() {
+		return level;
+	}
+
 	public PlayerClass getPlayerClass()
 	{
 		return pClass;
@@ -46,5 +61,57 @@ public class Player extends Creature implements NetHackHero
 	public byte alignment()
 	{
 		return align;
+	}
+	
+	protected void setHp(int hp) {
+		this.hp = hp;
+	}
+
+	protected void setMaxhp(int maxhp) {
+		this.maxhp = maxhp;
+	}
+
+	protected void setMp(int mp) {
+		this.mp = mp;
+	}
+
+	protected void setMaxmp(int maxmp) {
+		this.maxmp = maxmp;
+	}
+
+	protected void setAlign(byte align) {
+		this.align = align;
+	}
+
+	protected void setSt(int st) {
+		this.st = st;
+	}
+
+	protected void setDx(int dx) {
+		this.dx = dx;
+	}
+
+	protected void setCo(int co) {
+		this.co = co;
+	}
+
+	protected void setCh(int ch) {
+		this.ch = ch;
+	}
+
+	protected void setWi(int wi) {
+		this.wi = wi;
+	}
+
+	protected void setIn(int in) {
+		this.in = in;
+	}
+
+	protected void setFemale(boolean isFemale) {
+		this.isFemale = isFemale;
+	}
+
+	protected void setMale(boolean isMale) {
+		this.isMale = isMale;
 	}
 }
