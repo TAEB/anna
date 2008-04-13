@@ -8,6 +8,12 @@ public class Creature
 	protected int st, dx, co, ch, wi, in;
 	protected boolean isFemale;
 	protected boolean isMale;
+	protected int ac;
+	
+	public int getAC()
+	{
+		return ac;
+	}
 	
 	public int getHp()
 	{

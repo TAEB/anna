@@ -114,4 +114,9 @@ public class Player extends Creature implements NetHackHero
 	protected void setMale(boolean isMale) {
 		this.isMale = isMale;
 	}
+	
+	protected void setAC(int ac)
+	{
+		this.ac=ac;
+	}
 }

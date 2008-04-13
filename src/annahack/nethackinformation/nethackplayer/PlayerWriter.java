@@ -28,6 +28,26 @@ public class PlayerWriter
 		player.setAlign(align);
 	}
 	
+	public void setAlignment(String align)
+	{
+		if(align.toLowerCase().equals("chaotic"))
+		{
+			setAlign((byte)-1);
+		}
+		else if(align.toLowerCase().equals("neutral"))
+		{
+			setAlign((byte)0);
+		}
+		else if(align.toLowerCase().equals("lawful"))
+		{
+			setAlign((byte)1);
+		}
+	}
+	
+	public void setAC(int ac)
+	{
+		player.setAC(ac);
+	}
 	public void setCh(int ch)
 	{
 		player.setCh(ch);
