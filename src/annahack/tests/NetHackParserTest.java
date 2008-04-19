@@ -61,6 +61,11 @@ public class NetHackParserTest
 		}}catch(Exception e){System.exit(-1);}
 	}
 	
-	
+	private static void waitForServer(TelnetInterface connection)
+	{
+		try{
+			while(!connection.waiting()){Thread.sleep(100);}
+		}catch (Exception e){System.out.println(e);}
+	}
 
 }
