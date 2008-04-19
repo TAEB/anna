@@ -18,5 +18,11 @@ public interface TelnetInterface
 	
 	public long timeSinceUpdate();
 	
+	/**
+	 * 
+	 * @return true if server is ready for input
+	 * @throws InterruptedException
+	 * @throws IOException
+	 */
 	public boolean waiting() throws InterruptedException, IOException;
 }
