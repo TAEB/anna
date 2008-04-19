@@ -98,4 +98,9 @@ public class ApacheBasedTelnetInterface extends EmulatorVT100 implements TelnetI
 	{
 		return System.currentTimeMillis()-lastUpdate;
 	}
+	
+	public long lastUpdate()
+	{
+		return lastUpdate;
+	}
 }

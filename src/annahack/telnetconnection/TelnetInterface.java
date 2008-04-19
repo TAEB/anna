@@ -17,7 +17,7 @@ public interface TelnetInterface
 	public int getcursory();
 	
 	public long timeSinceUpdate();
-	
+	public long getLastUpdate();
 	/**
 	 * 
 	 * @return true if server is ready for input

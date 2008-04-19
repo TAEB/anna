@@ -413,4 +413,8 @@ public abstract class Emulator
 		for (int j=0; j<term_width; j++)
 			screen[row][j]=new TerminalSymbol();
 	}
+
+	public long getLastUpdate() {
+		return lastUpdate;
+	}
 }
