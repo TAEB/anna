@@ -2,6 +2,7 @@ package annahack.tests;
 
 import org.apache.commons.net.telnet.*;
 import annahack.telnetconnection.*;
+import annahack.nethackinformation.nethackplayer.Player;
 import annahack.nethackparser.*;
 import annahack.dglconnection.*;
 
@@ -17,9 +18,18 @@ public class NetHackParserTest
 		//NetHackParser nhp=new NetHackParser(getLoggedInInterface());
 		
 		TelnetInterface connection = getLoggedInInterface();
+		Thread.sleep(10000);
+		printInterface(connection);
 		NetHackMetagamingFunctions.createCharacter(connection);
+		Thread.sleep(1000);
+		printInterface(connection);
 		NetHackParser nhp=new NetHackParser(connection);
-		NetHackMetagamingFunctions.quitGame(connection);
+		Thread.sleep(1000);
+		printInterface(connection);
+		Player p = nhp.getPlayer();
+		System.out.println(p.getHp());
+		
+		//NetHackMetagamingFunctions.quitGame(connection);
 	}
 	
 	/*
