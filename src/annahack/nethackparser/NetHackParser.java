@@ -247,4 +247,9 @@ public class NetHackParser
 	{
 		return turn;
 	}
+	
+	public boolean debug_parseStatusLine()
+	{
+		try{return parseStatusLine();}catch(Exception e){return false;}
+	}
 }
