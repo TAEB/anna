@@ -52,6 +52,15 @@ public class NetHackParserTest
 		return kraln.dumpInterface();
 	}
 	
+	private static void printInterface(TelnetInterface con)
+	{
+		try{
+		for(int i=0; i<24; i++)
+		{
+			System.out.println(new String(con.peekLine(i)));
+		}}catch(Exception e){System.exit(-1);}
+	}
+	
 	
 
 }
