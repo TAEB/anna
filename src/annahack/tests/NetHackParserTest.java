@@ -16,20 +16,28 @@ public class NetHackParserTest
 	public static void main(String[] args) throws Exception
 	{
 		//NetHackParser nhp=new NetHackParser(getLoggedInInterface());
-		
 		TelnetInterface connection = getLoggedInInterface();
-		waitForServer(connection);
-		printInterface(connection);
+		Thread.sleep(10000);
+		//printInterface(connection);
+		
+		long lastUpdate=connection.getLastUpdate();
 		NetHackMetagamingFunctions.createCharacter(connection);
-		waitForServer(connection);
-		printInterface(connection);
+		while(lastUpdate==connection.getLastUpdate()){Thread.sleep(10);}
+		//printInterface(connection);
+		lastUpdate=connection.getLastUpdate();
+		
 		NetHackParser nhp=new NetHackParser(connection);
 		waitForServer(connection);
-		printInterface(connection);
+		//printInterface(connection);
+		while(lastUpdate==connection.getLastUpdate()){Thread.sleep(10);}
+		lastUpdate=connection.getLastUpdate();
+		/*while(lastUpdate==connection.getLastUpdate()){Thread.sleep(10);}
+		lastUpdate=connection.getLastUpdate();*/
+		System.out.println(nhp.debug_parseStatusLine());
 		Player p = nhp.getPlayer();
 		System.out.println(p.getHp());
 		
-		//NetHackMetagamingFunctions.quitGame(connection);
+		NetHackMetagamingFunctions.quitGame(connection);
 	}
 	
 	/*
@@ -63,8 +71,11 @@ public class NetHackParserTest
 	
 	private static void waitForServer(TelnetInterface connection)
 	{
+		
 		try{
-			while(!connection.waiting()){Thread.sleep(100);}
+			while(!connection.waiting())
+			{Thread.sleep(100);
+			}
 		}catch (Exception e){System.out.println(e);}
 	}
 
