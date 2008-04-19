@@ -18,13 +18,13 @@ public class NetHackParserTest
 		//NetHackParser nhp=new NetHackParser(getLoggedInInterface());
 		
 		TelnetInterface connection = getLoggedInInterface();
-		Thread.sleep(10000);
+		waitForServer(connection);
 		printInterface(connection);
 		NetHackMetagamingFunctions.createCharacter(connection);
-		Thread.sleep(1000);
+		waitForServer(connection);
 		printInterface(connection);
 		NetHackParser nhp=new NetHackParser(connection);
-		Thread.sleep(1000);
+		waitForServer(connection);
 		printInterface(connection);
 		Player p = nhp.getPlayer();
 		System.out.println(p.getHp());
