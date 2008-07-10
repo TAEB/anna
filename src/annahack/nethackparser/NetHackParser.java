@@ -216,7 +216,7 @@ public class NetHackParser
 			pw.setMaxHp(Integer.parseInt(m_hp.group(2)));
 			pw.setMp(Integer.parseInt(m_mp.group(1)));
 			pw.setMaxMp(Integer.parseInt(m_mp.group(2)));
-			pw.setAC(Integer.parseInt(m_mp.group(1)));
+			pw.setAC(Integer.parseInt(m_ac.group(1)));
 			pw.setXp(Integer.parseInt(m_xp.group(1)));
 			pw.setLevel(Integer.parseInt(m_xp.group(2)));
 			//End bottom line
