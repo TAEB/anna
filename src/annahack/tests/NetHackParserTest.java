@@ -36,8 +36,33 @@ public class NetHackParserTest
 		System.out.println(nhp.debug_parseStatusLine());
 		Player p = nhp.getPlayer();
 		System.out.println(p.getHp());
+
+		BufferedReader in=new BufferedReader(new InputStreamReader(System.in));
 		
-		
+		String input="!done";
+		while (!input.equals("done"))
+		{
+			Thread.sleep(1000);
+			while (connection.timeSinceUpdate()<1000)	//this is high
+			{
+				System.out.println(connection.timeSinceUpdate());
+				System.out.println("not waiting...");
+				Thread.sleep(100);
+			}
+			for (int i=0; i<24; i++)
+			{
+				for (int j=0; j<80; j++)
+					System.out.print((char)(connection.peek(i, j).getChar()));
+				System.out.println();
+			}
+			
+			input=in.readLine();
+			System.out.println("read.");
+			if (input.startsWith("\\n"))
+				connection.send('\n');
+			else
+				connection.send(input.getBytes());
+		}
 		
 		NetHackMetagamingFunctions.quitGame(connection);
 	}
