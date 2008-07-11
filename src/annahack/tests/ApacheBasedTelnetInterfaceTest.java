@@ -34,7 +34,7 @@ public class ApacheBasedTelnetInterfaceTest
         tc.addOptionHandler(echoopt);
         tc.addOptionHandler(gaopt);
         
-		tc.connect("nethack.kraln.com", 23);
+		tc.connect("nethack.alt.org", 23);
 		OutputStream os=tc.getOutputStream();
 		
 		TelnetInterface connection=new ApacheBasedTelnetInterface(tc);
