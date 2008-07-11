@@ -17,7 +17,7 @@ public class OSBasedTelnetInterfaceTest
 	public static void main(String[] args)
 		throws InvalidTelnetOptionException, IOException, InterruptedException
 	{
-		Process tc=Runtime.getRuntime().exec("telnet nethack.kraln.com");
+		Process tc=Runtime.getRuntime().exec("telnet nethack.alt.org");
 		
 		TelnetInterface connection=new OSBasedTelnetInterface(tc);
 		
