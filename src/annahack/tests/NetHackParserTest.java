@@ -39,29 +39,60 @@ public class NetHackParserTest
 
 		BufferedReader in=new BufferedReader(new InputStreamReader(System.in));
 		
-		String input="!done";
-		while (!input.equals("done"))
 		{
-			Thread.sleep(1000);
-			while (connection.timeSinceUpdate()<1000)	//this is high
-			{
-				System.out.println(connection.timeSinceUpdate());
-				System.out.println("not waiting...");
-				Thread.sleep(100);
-			}
-			for (int i=0; i<24; i++)
-			{
-				for (int j=0; j<80; j++)
-					System.out.print((char)(connection.peek(i, j).getChar()));
-				System.out.println();
-			}
+			String input="!done";
+			boolean repeat=false;
 			
-			input=in.readLine();
-			System.out.println("read.");
-			if (input.startsWith("\\n"))
-				connection.send('\n');
-			else
-				connection.send(input.getBytes());
+			while (!input.equals("done"))
+			{
+				Thread.sleep(1000);
+				do
+				{
+					while (connection.timeSinceUpdate()<1000)	//this is high
+					{
+						System.out.println(connection.timeSinceUpdate());
+						System.out.println("not waiting...");
+						Thread.sleep(100);
+					}
+					for (int i=0; i<24; i++)
+					{
+						for (int j=0; j<80; j++)
+							System.out.print((char)(connection.peek(i, j).getChar()));
+						System.out.println();
+					}
+					
+					switch (nhp.checkMessages())
+					{
+					case 1:
+						while (nhp.hasMessages())
+							System.out.println(nhp.popMessage());
+					case 0:
+						repeat=false;
+						break;
+					case 2:
+						while (nhp.hasMessages())
+							System.out.println(nhp.popMessage());
+						connection.send(' ');
+						repeat=true;
+						break;
+					case 3:
+						while (nhp.hasMessages())
+							System.out.println(nhp.popMessage());
+						System.out.print("Your answer: ");
+						connection.send((in.readLine()+"\n").getBytes());
+						repeat=true;
+						break;
+					}
+					
+				} while (repeat);
+				
+				input=in.readLine();
+				System.out.println("read.");
+				if (input.startsWith("\\n"))
+					connection.send('\n');
+				else
+					connection.send(input.getBytes());
+			}
 		}
 		
 		NetHackMetagamingFunctions.quitGame(connection);
