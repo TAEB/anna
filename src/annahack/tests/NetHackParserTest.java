@@ -37,6 +37,8 @@ public class NetHackParserTest
 		Player p = nhp.getPlayer();
 		System.out.println(p.getHp());
 		
+		
+		
 		NetHackMetagamingFunctions.quitGame(connection);
 	}
 	
