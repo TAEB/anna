@@ -1,10 +1,6 @@
 package annahack.nethackinformation.map;
 
-import java.util.ArrayList;
-
-import annahack.nethackinformation.lutz.Item;
-
-public class Staircase extends Tile
+public class Staircase extends Fixture
 {
 	private boolean up;
 	private Tile destinationTile;
@@ -19,12 +15,6 @@ public class Staircase extends Tile
 		up=goesup;
 	}
 	
-	public Staircase(boolean goesup, byte tipe, boolean areLutzKnown, ArrayList<Item> items)
-	{
-		super(tipe, areLutzKnown, items);
-		up=goesup;
-	}
-
 	public Tile getDestinationTile() {
 		return destinationTile;
 	}
