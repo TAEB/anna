@@ -54,12 +54,6 @@ public class NetHackParserTest
 						System.out.println("not waiting...");
 						Thread.sleep(100);
 					}
-					for (int i=0; i<24; i++)
-					{
-						for (int j=0; j<80; j++)
-							System.out.print((char)(connection.peek(i, j).getChar()));
-						System.out.println();
-					}
 					
 					switch (nhp.checkMessages())
 					{
@@ -85,6 +79,13 @@ public class NetHackParserTest
 					}
 					
 				} while (repeat);
+
+				for (int i=0; i<24; i++)
+				{
+					for (int j=0; j<80; j++)
+						System.out.print((char)(connection.peek(i, j).getChar()));
+					System.out.println();
+				}
 				
 				input=in.readLine();
 				System.out.println("read.");
