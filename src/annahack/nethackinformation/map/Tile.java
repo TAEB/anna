@@ -26,27 +26,29 @@ public class Tile
 		lutzKnown=areLutzKnown;
 	}
 
-	protected byte getType() {
+	public byte getType() {
 		return type;
 	}
 
-	protected void setType(byte type) {
+	public void setType(byte type) {
 		this.type = type;
 	}
 
-	protected ArrayList<Item> getLutz() {
+	public ArrayList<Item> getLutz() {
 		return lutz;
 	}
 
-	protected void setLutz(ArrayList<Item> lutz) {
+	public void setLutz(ArrayList<Item> lutz) {
 		this.lutz = lutz;
 	}
 
-	protected boolean isLutzKnown() {
+	public boolean isLutzKnown() {
 		return lutzKnown;
 	}
 
-	protected void setLutzKnown(boolean lutzKnown) {
+	public void setLutzKnown(boolean lutzKnown) {
 		this.lutzKnown = lutzKnown;
 	}
+
+	
 }
