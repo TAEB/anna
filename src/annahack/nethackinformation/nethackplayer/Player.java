@@ -2,7 +2,7 @@ package annahack.nethackinformation.nethackplayer;
 
 import annahack.nethackinformation.nethackcreatures.Creature;
 
-public class Player extends Creature implements NetHackHero 
+public class Player extends Creature implements NetHackHero
 {
 	private PlayerClass pClass;
 	private PlayerRace pRace;

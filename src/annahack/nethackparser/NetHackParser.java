@@ -250,6 +250,13 @@ public class NetHackParser
 	
 	public boolean debug_parseStatusLine()
 	{
-		try{return parseStatusLine();}catch(Exception e){return false;}
+		try{
+			return parseStatusLine();
+		}catch(Exception e)
+		{
+			System.err.println("Status Line Parsing Error");
+			e.printStackTrace();
+			return false;
+		}
 	}
 }
