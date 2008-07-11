@@ -25,4 +25,28 @@ public class Tile
 		type=tipe;
 		lutzKnown=areLutzKnown;
 	}
+
+	protected byte getType() {
+		return type;
+	}
+
+	protected void setType(byte type) {
+		this.type = type;
+	}
+
+	protected ArrayList<Item> getLutz() {
+		return lutz;
+	}
+
+	protected void setLutz(ArrayList<Item> lutz) {
+		this.lutz = lutz;
+	}
+
+	protected boolean isLutzKnown() {
+		return lutzKnown;
+	}
+
+	protected void setLutzKnown(boolean lutzKnown) {
+		this.lutzKnown = lutzKnown;
+	}
 }
