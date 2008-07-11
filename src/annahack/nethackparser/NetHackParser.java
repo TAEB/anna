@@ -80,6 +80,16 @@ public class NetHackParser
 		
 	}
 	
+	public String popMessage()
+	{
+		return messageBuf.poll();
+	}
+	
+	public boolean hasMessages()
+	{
+		return !messageBuf.isEmpty();
+	}
+	
 	/**
 	 * Checks for a "things that are here" starting on the given line.
 	 * Line should be 0 or 2.
