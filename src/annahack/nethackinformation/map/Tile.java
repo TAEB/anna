@@ -5,33 +5,43 @@ import java.util.ArrayList;
 
 public class Tile 
 {
-	private byte type; //this is the character for the tile
+	private Fixture fixture; //this is the character for the tile
 					   //i.e. a floor tile's type is #
 					   //'?' is unknown
 	
 	private ArrayList<Item> lutz; //Stuff piled atop the square
-	private boolean lutzKnown;
+	private boolean lutzKnown, fixtureKnown;
 	
 	public Tile()
 	{
 		lutzKnown=false;
-		type='?';
+		fixtureKnown=false;
+		fixture=null;
 		lutz=new ArrayList<Item>();
 	}
 	
-	public Tile(byte tipe, boolean areLutzKnown, ArrayList<Item> items)
+	public Tile(boolean isFixtureKnown, Fixture fixture, boolean areItemsKnown, ArrayList<Item> items)
 	{
-		lutzKnown = areLutzKnown;
-		type=tipe;
-		lutzKnown=areLutzKnown;
+		lutzKnown = areItemsKnown;
+		fixtureKnown=isFixtureKnown;
+		this.fixture = fixture;
+		lutz = items;
 	}
 
-	public byte getType() {
-		return type;
+	public Fixture getFixture() {
+		return fixture;
 	}
 
-	public void setType(byte type) {
-		this.type = type;
+	public void setFixture(Fixture fixture) {
+		this.fixture = fixture;
+	}
+
+	public boolean isFixtureKnown() {
+		return fixtureKnown;
+	}
+
+	public void setFixtureKnown(boolean fixtureKnown) {
+		this.fixtureKnown = fixtureKnown;
 	}
 
 	public ArrayList<Item> getLutz() {
