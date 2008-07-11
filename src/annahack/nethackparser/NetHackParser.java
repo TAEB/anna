@@ -143,7 +143,7 @@ public class NetHackParser
 		try{
 			if(!statusLine.parseStatusLine())
 			{
-				return false;
+				throw new Exception();
 			}
 			else
 			{
