@@ -19,6 +19,7 @@ public class StatusLineParser
 	public StatusLineParser(TelnetInterface com, PlayerWriter pw)
 	{
 		this.com=com;
+		this.pw=pw;
 	}
 	private static final Pattern r_hp = Pattern.compile("HP:([\\d]+)\\(([\\d]+)\\)");
 	private static final Pattern r_mp = Pattern.compile("Pw:([\\d]+)\\(([\\d]+)\\)");
