@@ -9,13 +9,13 @@ public class Map
 		tiles = new Tile[80][20];
 	}
 	
-	public Tile getTile(int x, int y)
+	public Tile getTile(MapCoord mc)
 	{
-		return tiles[x][y];
+		return tiles[mc.getX()][mc.getY()];
 	}
 	
-	public void setTile(int x, int y, Tile tile)
+	public void setTile(MapCoord mc, Tile tile)
 	{
-		tiles[x][y]=tile;
+		tiles[mc.getX()][mc.getY()]=tile;
 	}
 }
